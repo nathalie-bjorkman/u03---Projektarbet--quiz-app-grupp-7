@@ -1,29 +1,27 @@
 :root {
-  :root {
-    /* Background colors */
-    --bg-purple: #f5efff;
-    --bg-pink: #fff0f5;
+  /* Färger */
+  --color-primary: #5620a8;
+  --color-secondary: #ffffff;
 
-    /* Background gradients */
-    --bg-gradient: radial-gradient(
-        ellipse at 20% 10%,
-        rgb(252 211 77 / 24%) 0%,
-        transparent 72%
-      ),
-      radial-gradient(
-        ellipse at 80% 20%,
-        rgb(200 30 103 / 13%) 0%,
-        transparent 79%
-      ),
-      linear-gradient(90deg, var(--bg-purple) 0%, var(--bg-pink) 100%);
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-text: #241432;
+  --color-text-muted: #655a70;
+  --color-heading: #5620a8;
+  --color-border: #dddddd;
 
-    /* Colors */
-    --color-primary: #5620a8;
-    --color-text: #241432;
-    --color-background: #ffffff;
-    --color-white: #ffffff;
+  /* Typography */
+  --font-family: "Fredoka", sans-serif;
+  --font-body: "DM Sans", sans-serif;
 
-    /* Typography */
-    --font-primary: "Poppins", sans-serif;
-  }
+  /* Spacing */
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.6rem;
+  --spacing-lg: 2.4rem;
+  --spacing-xl: 3.2rem;
+
+  /* Border radius */
+  --radius-sm: 0.8rem;
+  --radius-md: 1.6rem;
+  --radius-full: 9999px;
 }

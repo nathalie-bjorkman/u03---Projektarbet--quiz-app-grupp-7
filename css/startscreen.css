@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0rem;
+  padding: 0rem;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0rem 2rem;
+  color: var(--font-body);
+}
+
+header {
+}
+
+.logo img {
+  height: 3rem;
+  width: auto;
+}
+
+.pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 0.8rem 1.2rem;
+  border-radius: 99999999rem;
+  background-color: #fcd34d;
+}
+
+h1 {
+  font-family: var(--font-family);
+  font-size: 4.6rem;
+}
+
+.primarycolor {
+  color: var(--color-primary);
+}
