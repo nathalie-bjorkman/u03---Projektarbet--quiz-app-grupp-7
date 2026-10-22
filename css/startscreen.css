@@ -17,6 +17,7 @@ body {
 }
 
 header {
+  margin-top: 2.8rem;
 }
 
 .logo img {
@@ -33,11 +34,33 @@ header {
   padding: 0.8rem 1.2rem;
   border-radius: 99999999rem;
   background-color: #fcd34d;
+  gap: 0.8rem;
+  margin-top: 14rem;
+}
+
+.pill span {
+  font-size: var(--font-size-p-xl);
+}
+
+.pill img {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
+  display: flex;
+  align-items: center;
   font-family: var(--font-family);
   font-size: 4.6rem;
+  padding-top: 2.4rem;
+}
+
+h1 span {
 }
 
 .primarycolor {
