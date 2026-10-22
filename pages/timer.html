@@ -6,24 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/timer.css">
 </head>
 <!-- Timer - Nathalie -->
+
 <body>
 
-    <main>
+    <main id="timer-progress">
         <div class="quiz-timer" role="timer">
             <span id="timer-icon" aria-hidden="true">⏱️</span>
-            <span class="time-left">01.00</span>
+            <span class="time-left">04.00</span>
         </div>
 
-        <div>
-        <button id="cancel">Avbryt</button>
+        <div class="cancel">
+            <button id="cancel-button">
+                <p class="cancel-text">Avbryt</p>
+            </button>
         </div>
 
-        <div>
-            <p>Fråga 5 av 10</p>
-            <span id="progess-bar"></span>
+        <div class="questions-left">
+            <p class="how-many-left">5 kvar</p>
+        </div>
+
+        <div id="progress">
+            <p class="text-progress">Fråga 5 av 10</p>
+            <span class="progress-bar"></span>
         </div>
     </main>
 

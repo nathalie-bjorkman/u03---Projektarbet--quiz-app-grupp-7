@@ -1,0 +1,81 @@
+#timer-progress {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 2rem;
+    margin-top: 2rem;
+
+    width: 6rem;
+    height: 2.5rem;
+    background-color: aqua; /* ändra färg sedan */
+    border-radius: 10px;
+}
+
+#timer-icon {
+    width: 2rem;
+    height: 1.5rem;
+    max-width: 100%;
+}
+
+.time-left {
+    margin-right: 0.4rem;
+   
+}
+
+.cancel {
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-right: 2rem;
+}
+
+#cancel-button {
+    width: 5rem;
+    height: 3rem;
+    max-width: 100%;
+    border: none;
+    border-radius: 10px;
+
+    
+    background-color: bisque;
+}
+
+#cancel-button:hover {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.cancel-text {
+    margin: 0.5rem;
+}
+
+.questions-left {
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    width: 4rem;
+    height: 2rem;
+    max-width: 100%;
+
+    background-color: rgb(218, 84, 84);
+    border-radius: 10px;
+}
+
+.how-many-left {
+    margin: 0.5rem;
+    margin-left: 0.8rem;
+}
+
+
+
+.progress-bar {
+    background-color: black;
+    width: 20px;
+    height: 10px;
+}
+
