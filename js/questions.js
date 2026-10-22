@@ -2,6 +2,8 @@ async function getQuestion(category, difficulty) {
     let response = "";
     let response_data;
     error_count = 0;
+    
+    resetAnswers();
 
     // Trial and Error Question Selection
     do {
