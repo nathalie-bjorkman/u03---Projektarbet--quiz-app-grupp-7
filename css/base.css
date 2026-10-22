@@ -14,6 +14,12 @@
   --font-family: "Fredoka", sans-serif;
   --font-body: "DM Sans", sans-serif;
 
+  /* Font sizes */
+  --font-size-h1: 3.2rem;
+  --font-size-h2: 2.4rem;
+  --font-size-p-xl: 1.6rem;
+  --font-size-p-sm: 1.2rem;
+
   /* Spacing */
   --spacing-sm: 0.8rem;
   --spacing-md: 1.6rem;
