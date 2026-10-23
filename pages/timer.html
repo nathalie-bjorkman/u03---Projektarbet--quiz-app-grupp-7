@@ -7,16 +7,28 @@
     <title>Timer</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/timer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
 </head>
 <!-- Timer - Nathalie -->
 
 <body>
 
     <main id="timer-progress">
+
+        <!-- Timer -->
+
         <div class="quiz-timer" role="timer">
-            <span id="timer-icon" aria-hidden="true">⏱️</span>
-            <span class="time-left">04.00</span>
+            <span id="timer-icon" aria-hidden="true"><img src="../img/timer.svg" alt=""></span>
+            <span class="time-left">
+                04.00
+            </span>
         </div>
+
+        <!-- Avbryt knappen -->
 
         <div class="cancel">
             <button id="cancel-button">
@@ -24,13 +36,18 @@
             </button>
         </div>
 
-        <div class="questions-left">
-            <p class="how-many-left">5 kvar</p>
-        </div>
+        <!-- Framsteg -->
 
-        <div id="progress">
-            <p class="text-progress">Fråga 5 av 10</p>
-            <span class="progress-bar"></span>
+        <div class="quiz-progress">
+            <div class="progress-info">
+                <span id="question-count">Fråga 1 av 10</span>
+                <span id="questions-left">9 kvar</span>
+            </div>
+
+            <div class="progress-bar" role="progressbar" aria-label="Quizets framsteg" aria-valuemin="0"
+                aria-valuemax="10" aria-valuenow="1">
+                <div class="progress-fill"></div>
+            </div>
         </div>
     </main>
 
