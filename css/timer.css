@@ -9,7 +9,26 @@
     --color-primary: #5620a8;
     --color-secondary: #ffffff;
 
-    --color-bg: #f5f5f5;
+    --background-gradient-questions: 
+        radial-gradient(
+            ellipse at top left,
+            rgba(252, 211, 77, 0.24) 0%,
+            rgba(252, 211, 77, 0) 72%
+        ),
+
+        /* Gradient färg ihop med det andra här till start & bra jobbat vyn */
+       /*  radial-gradient(
+            ellipse at top right,
+            rgba(200, 30, 103, 0.13) 0%,
+            rgba(200, 30, 103, 0) 79%
+        ), */
+
+        linear-gradient(
+            160deg,
+            #F5EFFF 0%,
+            #FFF0F5 100%
+        );
+
     --color-surface: #ffffff;
     --color-text: #241432;
     --color-text-muted: #655a70;
@@ -46,12 +65,67 @@
 
 /* Main  */
 body {
-    background-color: var(--color-bg);
+    background: var(--background-gradient-questions);
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+}
+
+.decoration-bar,
+.decoration-circle {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.decoration-circle {
+    position: absolute;
+    top: 4rem;
+    left: -2.5rem;
+
+    width: 5rem;
+    height: 5rem;
+
+    border: 0.875rem solid rgba(109, 40, 217, 0.11);
+    border-radius: 50px;
+}
+
+.decoration-bar {
+    position: absolute;
+    top: 10rem;
+    left: 0.5rem;
+
+    width: 1.7rem;
+    height: 0.65rem;
+
+    background-color: #C81E67;
+    border-radius: 50px;
+
+    transform: rotate(60deg);
 }
 
 #timer-progress {
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.25rem 0;
+}
+
+.quiz-logo {
+    display: inline-flex;
+    
+    max-width: 47.5rem;
+    width: 5.91rem;
+    height: 1.44rem;
+
 }
 
 /* Timer stylling */
@@ -61,11 +135,7 @@ body {
     min-height: 2.625rem;
     padding: 0.5rem 0.75rem;
     align-items: center;
-    gap: 8px;
-
-    margin-left: auto;
-    margin-right: var(--margin-right);
-    margin-top: 1.12rem;
+    gap: 0.5rem;
 
     color: var(--color-heading);
     background-color: #FFFCF8;
@@ -86,20 +156,24 @@ body {
 
 #cancel-button {
     display: flex;
-    width: 4.358rem;
-    height: 2.5rem;
-    min-height: 2.5rem;
-    padding: 0.5rem 0.75rem;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    
     margin-left: auto;
     margin-right: var(--margin-right);
-    margin-top: 0.756rem;
+    margin-top: 0.75rem;
 
     border-radius: var(--radius-sm);
     border: 1.304px solid #8F8099;
     background: #FFFCF8;
+
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 700;
 }
 
 #cancel-button:hover {
@@ -107,29 +181,20 @@ body {
     border: 1px solid black;
 }
 
-.cancel-text {
-    color: var(--color-text-muted);
-    text-align: center;
-    font-size: 0.82rem;
-    font-family: var(--font-body);
-    font-style: normal;
-    font-weight: 700;
-}
-
 /* Framsteg i quizet, vilken fråga man är på, samt hur många man har kvar */
 
 .quiz-progress {
     width: 100%;
     padding: 0 1.5rem;
-    margin-right: var(--margin-right);
 }
 
 .progress-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.24rem;
-    margin-bottom: 0.63rem;
+
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
 }
 
 #question-count {
@@ -142,9 +207,6 @@ body {
 
 
 #questions-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 0.313rem 0.563rem;
 
     border-radius: 0.5rem;
@@ -153,7 +215,6 @@ body {
     color: #C81E67;
     font-family: var(--font-body);
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 700;
 }
 

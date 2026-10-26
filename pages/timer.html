@@ -16,39 +16,60 @@
 <!-- Timer - Nathalie -->
 
 <body>
+    <!-- Dekorativ cirkel -->
 
-    <main id="timer-progress">
+    <div class="decoration-circle" aria-hidden="true"></div>
+    <div class="decoration-bar" aria-hidden="true"></div>
 
-        <!-- Timer -->
+    <!-- Header -->
+    <header id="timer-progress">
 
-        <div class="quiz-timer" role="timer">
-            <span id="timer-icon" aria-hidden="true"><img src="../img/timer.svg" alt=""></span>
-            <span class="time-left">
-                04.00
-            </span>
-        </div>
+        <div class="timer-header">
+            <!-- logo -->
+            <img src="../img/timer/logo.svg" alt="Quiz Tajm" class="quiz-logo">
 
-        <!-- Avbryt knappen -->
 
-        <div class="cancel">
-            <button id="cancel-button">
-                <p class="cancel-text">Avbryt</p>
-            </button>
-        </div>
+            <!-- Timer -->
 
-        <!-- Framsteg -->
-
-        <div class="quiz-progress">
-            <div class="progress-info">
-                <span id="question-count">Fråga 1 av 10</span>
-                <span id="questions-left">9 kvar</span>
-            </div>
-
-            <div class="progress-bar" role="progressbar" aria-label="Quizets framsteg" aria-valuemin="0"
-                aria-valuemax="10" aria-valuenow="1">
-                <div class="progress-fill"></div>
+            <div class="quiz-timer" role="timer">
+                <span id="timer-icon" aria-hidden="true"><img src="../img/timer/timer.svg" alt=""></span>
+                <span class="time-left">
+                    04.00
+                </span>
             </div>
         </div>
+
+        <div id="cancel-progress">
+
+            <!-- Avbryt knappen -->
+
+            <div class="cancel">
+                <button id="cancel-button">
+                    Avbryt
+                </button>
+            </div>
+
+            <!-- Framsteg -->
+
+            <div class="quiz-progress">
+                <div class="progress-info">
+                    <span id="question-count">Fråga 1 av 10</span>
+                    <span id="questions-left">9 kvar</span>
+                </div>
+
+                <div class="progress-bar" role="progressbar" aria-label="Quizets framsteg" aria-valuemin="0"
+                    aria-valuemax="10" aria-valuenow="1">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Lumi Gör Detta -->
+
+
     </main>
 
 </body>
