@@ -1,6 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Färger */
+    --color-primary: #5620a8;
+    --color-secondary: #ffffff;
+
+    --color-bg: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-text: #241432;
+    --color-text-muted: #655a70;
+    --color-heading: #5620a8;
+    --color-border: #dddddd;
+
+    /* Typography */
+    --font-family: "Fredoka", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+
+    /* Font sizes */
+    --font-size-h1: 3.2rem;
+    --font-size-h2: 2.4rem;
+    --font-size-p-xl: 1.6rem;
+    --font-size-p-sm: 1.2rem;
+
+    /* Spacing */
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1.6rem;
+    --spacing-lg: 2.4rem;
+    --spacing-xl: 3.2rem;
+
+    /* Border radius */
+    --radius-sm: 0.8rem;
+    --radius-md: 1.6rem;
+    --radius-full: 9999px;
+
+    /* margin */
+    --margin-right: 1.25rem;
+    --margin-left: 1.25rem;
+}
+
+
+
 /* Main  */
 body {
-    background-color: var(--background-color);
+    background-color: var(--color-bg);
 }
 
 #timer-progress {
@@ -18,43 +64,42 @@ body {
     gap: 8px;
 
     margin-left: auto;
-    margin-right: var(--margin);
-    margin-top: 1.124rem;
+    margin-right: var(--margin-right);
+    margin-top: 1.12rem;
 
-    color: var(--primary-text-color);
-    background-color: var(--card-background);
+    color: var(--color-heading);
+    background-color: #FFFCF8;
     
-    border-radius: 14px;
-    border: 0.122rem solid #EDE4FF;
+    border-radius: var(--radius-sm);
+    border: 0.12rem solid #EDE4FF;
     box-shadow: 0 5px 15px 0 rgba(52, 23, 74, 0.08);
 }
 
 .time-left {
-    font-family: var(--font-family);
+    font-family: var(--font-body);
     font-size: 1rem;
     font-style: normal;
     font-weight: 700;
-    line-height: var(--line-height);
 }
 
 /* Avbryt knapp */
 
 #cancel-button {
     display: flex;
-    width: 4.375rem;
+    width: 4.358rem;
     height: 2.5rem;
     min-height: 2.5rem;
-    padding: var(--card-padding);
+    padding: 0.5rem 0.75rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    margin-right: var(--margin);
+    margin-right: var(--margin-right);
     margin-top: 0.756rem;
 
-    border-radius: 11px;
+    border-radius: var(--radius-sm);
     border: 1.304px solid #8F8099;
-    background: var(--card-background);
+    background: #FFFCF8;
 }
 
 #cancel-button:hover {
@@ -63,13 +108,12 @@ body {
 }
 
 .cancel-text {
-    color: #655A70;
+    color: var(--color-text-muted);
     text-align: center;
-    font-size: 0.813rem;
-    font-family: var(--font-family);
+    font-size: 0.82rem;
+    font-family: var(--font-body);
     font-style: normal;
     font-weight: 700;
-    line-height: var(--line-height);
 }
 
 /* Framsteg i quizet, vilken fråga man är på, samt hur många man har kvar */
@@ -77,24 +121,23 @@ body {
 .quiz-progress {
     width: 100%;
     padding: 0 1.5rem;
-    
+    margin-right: var(--margin-right);
 }
 
 .progress-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.242rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.24rem;
+    margin-bottom: 0.63rem;
 }
 
 #question-count {
-    color: var(--primary-text-color);
-    font-family: var(--font-family);
+    color: var(--color-primary);
+    font-family: var(--font-body);
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 700;
-    line-height: var(--line-height);
 }
 
 
@@ -104,15 +147,14 @@ body {
     align-items: flex-start;
     padding: 0.313rem 0.563rem;
 
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background: #FFE2EF;
 
     color: #C81E67;
-    font-family: var(--font-family);
+    font-family: var(--font-body);
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 700;
-    line-height: var(--line-height);
 }
 
 
@@ -130,9 +172,9 @@ body {
 .progress-fill {
     width: 10%;
     height: 100%;
-    border-radius: 100px;
+    border-radius: var(--radius-full);
     transition: width 0.3s ease;
-    background-color: var(--primary-text-color);
+    background-color: var(--color-primary);
 }
 
 
