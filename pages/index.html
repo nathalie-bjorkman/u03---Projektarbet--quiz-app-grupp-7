@@ -4,15 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Tajm Landningssida</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/startscreen.css" />
+    <script src="../js/main.js" defer></script>
   </head>
   <body>
-    <header></header>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="/img/logo.svg" alt="Quiz Tajm" />
+      </div>
+    </header>
     <main>
       <!-- Pill -->
-      <div><p>Fyra minuter. Tio frågor.</p></div>
+      <div class="pill">
+        <img src="/img/sparkles.svg" alt="" />
+        <span>Fyra minuter. Tio frågor.</span>
+      </div>
       <!-- Textarea -->
       <div>
-        <h1>Hur mycket kan du egentligen?</h1>
+        <div>
+          <h1 class="header">
+            Hur mycket kan du <span class="primarycolor">egentligen?</span>
+          </h1>
+        </div>
         <p>
           Välj dina favoritämnen, utmnana dig själv och se hur långt din
           allmänbildning räcker!
@@ -43,7 +58,9 @@
         <div><span>10 frågor · 4 minuter</span></div>
       </div>
       <!-- CTA button -->
-      <button>Start quiz</button>
+      <button style="background-color: red">
+        <span>Start quiz</span><img src="/img/arrow-right-2.svg" alt="" />
+      </button>
     </main>
   </body>
 </html>
