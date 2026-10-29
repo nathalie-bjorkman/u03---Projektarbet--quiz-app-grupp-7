@@ -22,10 +22,6 @@ const submitBtn = document.querySelector("#submit");
 // Posted by ChristopheD, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-10-22, License - CC BY-SA 4.0
 
-submitBtn.addEventListener(() => {
-    validate();
-});
-
 async function shuffle(array) {
   let currentIndex = array.length;
 
@@ -115,9 +111,13 @@ async function selectAnswer(answer_id) {
 
 async function validateAnswers() {
     // Kontrollera svar
+    console.log("Validerar svaret");
     answerTitleElements.map((answer) => {
         // Visa rätt eller fel
-        if(answerElement.innerHTML == localStorage.getItem("correctAnswer")) answerElement.classList.add("answer-correct");
+        if(answerElement.innerHTML == localStorage.getItem("correctAnswer") && answerElement.classList.contains("answer-selected")) { 
+            answerElement.classList.add("answer-correct");
+            answerElement.classList.remove("answer-selected"); 
+        }
         else answerElement.classList.add("answer-wrong");
     });
 
@@ -125,8 +125,23 @@ async function validateAnswers() {
 }
 
 async function init() {
-    // Inhämtar och cachar kategorierna och första omgång frågor
-    await localStorage.setItem("categories", getCategoryNames().join());
-    await localStorage.setItem("questions", getAPIQuestions().join());
+    // Kontrollera om det inte finns frågor inhämtade och cachade
+    if(!localStorage.getItem("questions")) {
+        // Inhämtar och cachar kategorierna och första omgång frågor
+        console.log("Inhämtar kategorier");
+        await localStorage.setItem("categories", getCategoryNames().join());
+        console.log("Inhämtar frågeställning");
+        await localStorage.setItem("questions", getAPIQuestions().join());
+    }
+
+    // Visa frågorna
+    console.log("Visar frågorna");
     await displayQuestions();
+
+    // Annars kan vi invänta svar
+    console.log("Inväntar submit click (eventListener)");
+    submitBtn.addEventListener("click", async () => {
+        console.log("SUBMIT CLICK!");
+        validate();
+    });
 }
