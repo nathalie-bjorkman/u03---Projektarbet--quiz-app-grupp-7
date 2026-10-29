@@ -1,56 +1,32 @@
-async function getQuestion(category, difficulty) {
-    let response = "";
-    let response_data;
-    error_count = 0;
-    
-    resetAnswers();
+/*
+    Fil: questions.js
+    Beskrivning: Logik som inhämtar slumpmässig fråga från offentligt API med svarshantering
+    Författare: Lumi Hyväri -- @lumiwyou <lumi.hyvari@gmail.com>
+*/
 
-    // Trial and Error Question Selection
-    do {
-        try {
-            response = await fetch("https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple");
-            if(response.status != 200) {
-                console.log(`API response status: ${response.status}`);
-                error_count++;
-                continue;
-            }
-            response_data = await response.json();
-            response_data = response_data.results[0];
-            console.log(response_data);
-        }catch{
-            console.log("Unable to retrieve question from API-endpoint");
-        }
-        // If too many, remove
-        let rest = response_data.incorrect_answers.length + 1 - 3;
-        if(rest > 0) {
-            response_data.incorrect_answers.splice(rest - response_data.incorrect_answers.length + 1);
-        }
-    } while(response_data == "" || response_data.incorrect_answers.length + 1 < 3 || error_count >= 5);
+const API_ENDPOINT = "https://opentdb.com/api.php";
+let categories = [
+    // { id:Integer, name:String }
+];
 
-    // Input the data
-    localStorage.setItem("correctAnswer", response_data.correct_answer);
-    document.getElementById("question-titel").innerHTML = response_data.question;
-    document.getElementById("question-category").innerHTML = response_data.category;
-
-    // Randomize answers
-    let answers_values = [
-        response_data.incorrect_answers[0],
-        response_data.incorrect_answers[1],
-        response_data.correct_answer
-    ]
-
-    shuffle(answers_values);
-
-    document.getElementById("answer-titel-1").innerHTML = answers_values[0];
-    document.getElementById("answer-titel-2").innerHTML = answers_values[1];
-    document.getElementById("answer-titel-3").innerHTML = answers_values[2];
-}
+const answerTitleElements = [
+    document.querySelector("#answer-title-1"),
+    document.querySelector("#answer-title-2"),
+    document.querySelector("#answer-title-3")
+]
+const questionTitleElement = document.querySelector("question-titel");
+const questionCategoryElement = document.querySelector("question-category");
+const submitBtn = document.querySelector("#submit");
 
 // Source - https://stackoverflow.com/a/2450976
 // Posted by ChristopheD, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-10-22, License - CC BY-SA 4.0
 
-function shuffle(array) {
+submitBtn.addEventListener(() => {
+    validate();
+});
+
+async function shuffle(array) {
   let currentIndex = array.length;
 
   // While there remain elements to shuffle...
@@ -66,22 +42,58 @@ function shuffle(array) {
   }
 }
 
-document.querySelectorAll(".answer").forEach((answerElement, index) => {
-    answerElement.addEventListener("click", () => {
-        selectAnswer(index + 1);
-    });
-});
-
-function selectAnswer(answer_number) {
-    resetAnswers();
-    const answerElement = document.getElementById(`answer-${answer_number}`);
-    const answerTitel = document.getElementById(`answer-titel-${answer_number}`);
-
-    if(answerTitel.innerHTML === localStorage.getItem("correctAnswer")) {
-        answerElement.classList.add("answer-correct");
-    }else{
-        answerElement.classList.add("answer-wrong");
+// @brief Inhämta och skapa en lista av kategorier med dess respektive namn och id
+async function getCategoryNames() {
+    let categories = [];
+    // Iterera kategori-id för att skapa en tvådimensionell array av id:n och namn
+    for(let n = 0; n < max_id; n++) {
+        const res = fetch(`?amount=1&category=${n}&difficulty=low&type=single`);
+        const res_json = res.json();
+        categories.push({
+            id:n,
+            name:res_json.results[0].category.trim()
+        });
     }
+    return categories;
+}
+
+// @brief Inhämtar flertals slumpmässig frågor från offentligt API
+async function getAPIQuestions(category_name, difficulty, amount) {
+    // TODO: Implementera exception handling för fetch
+    let response = "";
+    const get_config = `?amount=${amount}&category=${category_name}&difficulty=${difficulty}&type=multiple`
+    let errors = 0;
+    const request_url = API_ENDPOINT + get_config;
+    const res = await fetch(request_url);
+    localStorage.setItem("questions", res.json().results.join())
+}
+
+async function displayQuestions() {
+    const questions = localStorage.getItem("questions").json();
+    questions.map(async (question) => {
+        // Validering: vid fall av alltför många svar, ta bort resterande
+        let rest = question.incorrect_answers.length + 1 - 3;
+        if(rest > 0) {
+            question.incorrect_answers.splice(rest - question.incorrect_answers.length + 1);
+        }
+
+        // Visa frågan och dess svar
+        questionTitleElement.innerHTML = question.question;
+        questionCategoryElement.innerHTML = question.category;
+
+        // Shuffla svaren för oförutsägbarhet
+        let answers = await shuffle([
+            question.incorrect_answers,
+            question.correct_answer
+        ]);
+
+        // Visa svaren
+        // ! Kommer detta att fungera? @lumiwyou
+        let zip_answers = (answers, answerTitleElements);
+        zip_answers.map((answer, element) => {
+            element.innerHTML = answer;
+        });
+    });
 }
 
 function resetAnswers() {
@@ -91,7 +103,30 @@ function resetAnswers() {
     }
 }
 
-document.getElementById("submit").addEventListener("click", () => {
+async function selectAnswer(answer_id) {
+    // Applicera stilkodning på elementet
     resetAnswers();
-    getQuestion();
-});
+    const answerElement = document.getElementById(`answer-${answer_id}`);
+    const answerTitel = document.getElementById(`answer-titel-${answer_id}`);
+
+    answerElement.classList.add(answer-selected);
+    return;
+}
+
+async function validateAnswers() {
+    // Kontrollera svar
+    answerTitleElements.map((answer) => {
+        // Visa rätt eller fel
+        if(answerElement.innerHTML == localStorage.getItem("correctAnswer")) answerElement.classList.add("answer-correct");
+        else answerElement.classList.add("answer-wrong");
+    });
+
+    // Nästa steg
+}
+
+async function init() {
+    // Inhämtar och cachar kategorierna och första omgång frågor
+    await localStorage.setItem("categories", getCategoryNames().join());
+    await localStorage.setItem("questions", getAPIQuestions().join());
+    await displayQuestions();
+}
