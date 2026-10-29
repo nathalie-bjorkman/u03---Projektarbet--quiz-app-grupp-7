@@ -143,6 +143,7 @@ body {
     border-radius: var(--radius-sm);
     border: 0.12rem solid #EDE4FF;
     box-shadow: 0 5px 15px 0 rgba(52, 23, 74, 0.08);
+    transition: border-color 0.3s ease;
 }
 
 .time-left {
@@ -150,6 +151,10 @@ body {
     font-size: 1rem;
     font-style: normal;
     font-weight: 700;
+}
+
+.quiz-timer.warning {
+    border-color: #ff6b00;
 }
 
 /* Avbryt knapp */
@@ -178,7 +183,9 @@ body {
 
 #cancel-button:hover {
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid #bc3908;
+    background-color: #fbe9e6;
+    color: #bc3908;
 }
 
 /* Framsteg i quizet, vilken fråga man är på, samt hur många man har kvar */
@@ -238,5 +245,67 @@ body {
     background-color: var(--color-primary);
 }
 
+/* Ruta när tiden är slut */
+
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.5rem;
+    background-color: rgba(36, 20, 50, 0.55);
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 22rem;
+    padding: 2rem;
+
+    text-align: center;
+    background-color: #FFFCF8;
+    border: 1px solid #EDE4FF;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 35px rgba(52, 23, 74, 0.18);
+}
+
+.modal-content h2 {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+    font-family: var(--font-family);
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+#time-up-button {
+    padding: 0.75rem 1.5rem;
+
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+#time-up-button:hover {
+    background-color: #421783;
+}
 
 
