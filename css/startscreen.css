@@ -47,6 +47,12 @@ header {
   width: 1.2rem;
 }
 
+.body-startscreen {
+  padding: 1.8rem 2rem 0rem 2rem;
+  font-size: var(--font-size-p-xl);
+  color: var(--color-text-muted);
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -58,9 +64,6 @@ h1 {
   font-family: var(--font-family);
   font-size: 4.6rem;
   padding-top: 2.4rem;
-}
-
-h1 span {
 }
 
 .primarycolor {
