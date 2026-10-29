@@ -10,19 +10,19 @@ let categories = [
 ];
 
 const answerTitleElements = [
-    document.querySelector("#answer-title-1"),
-    document.querySelector("#answer-title-2"),
-    document.querySelector("#answer-title-3")
+    document.querySelector("#answer-titel-1"),
+    document.querySelector("#answer-titel-2"),
+    document.querySelector("#answer-titel-3")
 ]
-const questionTitleElement = document.querySelector("question-titel");
-const questionCategoryElement = document.querySelector("question-category");
+const questionTitleElement = document.querySelector("#question-titel");
+const questionCategoryElement = document.querySelector("#question-category");
 const submitBtn = document.querySelector("#submit");
 
 // Source - https://stackoverflow.com/a/2450976
 // Posted by ChristopheD, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-10-22, License - CC BY-SA 4.0
 
-async function shuffle(array) {
+function shuffle(array) {
   let currentIndex = array.length;
 
   // While there remain elements to shuffle...
@@ -36,60 +36,68 @@ async function shuffle(array) {
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
+  return array;
 }
 
 // @brief Inhämta och skapa en lista av kategorier med dess respektive namn och id
 async function getCategoryNames() {
-    let categories = [];
-    // Iterera kategori-id för att skapa en tvådimensionell array av id:n och namn
-    for(let n = 0; n < max_id; n++) {
-        const res = fetch(`?amount=1&category=${n}&difficulty=low&type=single`);
-        const res_json = res.json();
-        categories.push({
-            id:n,
-            name:res_json.results[0].category.trim()
-        });
+    const response = await fetch("https://opentdb.com/api_category.php");
+    if (!response.ok) {
+        throw new Error(`Kunde inte hämta kategorier: ${response.status}`);
     }
-    return categories;
+
+    const data = await response.json();
+    return data.trivia_categories.map(({ id, name }) => ({
+        id,
+        name: name.trim()
+    }));
 }
 
 // @brief Inhämtar flertals slumpmässig frågor från offentligt API
-async function getAPIQuestions(category_name, difficulty, amount) {
-    // TODO: Implementera exception handling för fetch
-    let response = "";
-    const get_config = `?amount=${amount}&category=${category_name}&difficulty=${difficulty}&type=multiple`
-    let errors = 0;
-    const request_url = API_ENDPOINT + get_config;
-    const res = await fetch(request_url);
-    localStorage.setItem("questions", res.json().results.join())
+async function getAPIQuestions(categoryId, difficulty = "easy", amount = 10) {
+    const params = new URLSearchParams({
+        amount: String(amount),
+        difficulty,
+        type: "multiple"
+    });
+    if (categoryId !== undefined && categoryId !== null) {
+        params.set("category", String(categoryId));
+    }
+
+    const response = await fetch(`${API_ENDPOINT}?${params}`);
+    if (!response.ok) {
+        throw new Error(`Kunde inte hämta frågor: ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (data.response_code !== 0) {
+        throw new Error(`Fråge-API:t returnerade felkod ${data.response_code}`);
+    }
+    return data.results;
 }
 
-async function displayQuestions() {
-    const questions = localStorage.getItem("questions").json();
-    questions.map(async (question) => {
-        // Validering: vid fall av alltför många svar, ta bort resterande
-        let rest = question.incorrect_answers.length + 1 - 3;
-        if(rest > 0) {
-            question.incorrect_answers.splice(rest - question.incorrect_answers.length + 1);
-        }
+function displayQuestions() {
+    const questions = JSON.parse(localStorage.getItem("questions"));
+    if (!Array.isArray(questions) || questions.length === 0) {
+        throw new Error("Det finns inga frågor att visa.");
+    }
 
-        // Visa frågan och dess svar
-        questionTitleElement.innerHTML = question.question;
-        questionCategoryElement.innerHTML = question.category;
+    const question = questions[0];
+    questionTitleElement.textContent = decodeHTML(question.question);
+    questionCategoryElement.textContent = decodeHTML(question.category);
 
-        // Shuffla svaren för oförutsägbarhet
-        let answers = await shuffle([
-            question.incorrect_answers,
-            question.correct_answer
-        ]);
+    const answers = shuffle([
+        ...question.incorrect_answers.slice(0, answerTitleElements.length - 1),
+        question.correct_answer
+    ]);
 
-        // Visa svaren
-        // ! Kommer detta att fungera? @lumiwyou
-        let zip_answers = (answers, answerTitleElements);
-        zip_answers.map((answer, element) => {
-            element.innerHTML = answer;
-        });
+    answers.forEach((answer, index) => {
+        answerTitleElements[index].textContent = decodeHTML(answer);
     });
+}
+
+function decodeHTML(value) {
+    return new DOMParser().parseFromString(value, "text/html").documentElement.textContent;
 }
 
 function resetAnswers() {
@@ -129,9 +137,11 @@ async function init() {
     if(!localStorage.getItem("questions")) {
         // Inhämtar och cachar kategorierna och första omgång frågor
         console.log("Inhämtar kategorier");
-        await localStorage.setItem("categories", getCategoryNames().join());
+        const categoryData = await getCategoryNames();
+        localStorage.setItem("categories", JSON.stringify(categoryData));
         console.log("Inhämtar frågeställning");
-        await localStorage.setItem("questions", getAPIQuestions().join());
+        const questionData = await getAPIQuestions();
+        localStorage.setItem("questions", JSON.stringify(questionData));
     }
 
     // Visa frågorna
@@ -145,3 +155,5 @@ async function init() {
         validate();
     });
 }
+
+init();
