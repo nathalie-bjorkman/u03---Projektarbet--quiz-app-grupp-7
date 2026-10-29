@@ -1,1 +1,33 @@
+:root {
+  /* Färger */
+  --color-primary: #5620a8;
+  --color-secondary: #ffffff;
 
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-text: #241432;
+  --color-text-muted: #655a70;
+  --color-heading: #5620a8;
+  --color-border: #dddddd;
+
+  /* Typography */
+  --font-family: "Fredoka", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  /* Font sizes */
+  --font-size-h1: 3.2rem;
+  --font-size-h2: 2.4rem;
+  --font-size-p-xl: 1.6rem;
+  --font-size-p-sm: 1.2rem;
+
+  /* Spacing */
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.6rem;
+  --spacing-lg: 2.4rem;
+  --spacing-xl: 3.2rem;
+
+  /* Border radius */
+  --radius-sm: 0.8rem;
+  --radius-md: 1.6rem;
+  --radius-full: 9999px;
+}
