@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Färger */
+    --color-primary: #5620a8;
+    --color-secondary: #ffffff;
+
+    --background-gradient-questions: 
+        radial-gradient(
+            ellipse at top left,
+            rgba(252, 211, 77, 0.24) 0%,
+            rgba(252, 211, 77, 0) 72%
+        ),
+
+        /* Gradient färg ihop med det andra här till start & bra jobbat vyn */
+       /*  radial-gradient(
+            ellipse at top right,
+            rgba(200, 30, 103, 0.13) 0%,
+            rgba(200, 30, 103, 0) 79%
+        ), */
+
+        linear-gradient(
+            160deg,
+            #F5EFFF 0%,
+            #FFF0F5 100%
+        );
+
+    --color-surface: #ffffff;
+    --color-text: #241432;
+    --color-text-muted: #655a70;
+    --color-heading: #5620a8;
+    --color-border: #dddddd;
+
+    /* Typography */
+    --font-family: "Fredoka", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+
+    /* Font sizes */
+    --font-size-h1: 3.2rem;
+    --font-size-h2: 2.4rem;
+    --font-size-p-xl: 1.6rem;
+    --font-size-p-sm: 1.2rem;
+
+    /* Spacing */
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1.6rem;
+    --spacing-lg: 2.4rem;
+    --spacing-xl: 3.2rem;
+
+    /* Border radius */
+    --radius-sm: 0.8rem;
+    --radius-md: 1.6rem;
+    --radius-full: 9999px;
+
+    /* margin */
+    --margin-right: 1.25rem;
+    --margin-left: 1.25rem;
+}
+
+
+
+/* Main  */
+body {
+    background: var(--background-gradient-questions);
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+}
+
+.decoration-bar,
+.decoration-circle {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.decoration-circle {
+    position: absolute;
+    top: 4rem;
+    left: -2.5rem;
+
+    width: 5rem;
+    height: 5rem;
+
+    border: 0.875rem solid rgba(109, 40, 217, 0.11);
+    border-radius: 50px;
+}
+
+.decoration-bar {
+    position: absolute;
+    top: 10rem;
+    left: 0.5rem;
+
+    width: 1.7rem;
+    height: 0.65rem;
+
+    background-color: #C81E67;
+    border-radius: 50px;
+
+    transform: rotate(60deg);
+}
+
+#timer-progress {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.25rem 0;
+}
+
+.quiz-logo {
+    display: inline-flex;
+    
+    max-width: 47.5rem;
+    width: 5.91rem;
+    height: 1.44rem;
+
+}
+
+/* Timer stylling */
+
+.quiz-timer {
+    display: inline-flex;
+    min-height: 2.625rem;
+    padding: 0.5rem 0.75rem;
+    align-items: center;
+    gap: 0.5rem;
+
+    color: var(--color-heading);
+    background-color: #FFFCF8;
+    
+    border-radius: var(--radius-sm);
+    border: 0.12rem solid #EDE4FF;
+    box-shadow: 0 5px 15px 0 rgba(52, 23, 74, 0.08);
+}
+
+.time-left {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* Avbryt knapp */
+
+#cancel-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    
+    margin-left: auto;
+    margin-right: var(--margin-right);
+    margin-top: 0.75rem;
+
+    border-radius: var(--radius-sm);
+    border: 1.304px solid #8F8099;
+    background: #FFFCF8;
+
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+}
+
+#cancel-button:hover {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+/* Framsteg i quizet, vilken fråga man är på, samt hur många man har kvar */
+
+.quiz-progress {
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+#question-count {
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+#questions-left {
+    padding: 0.313rem 0.563rem;
+
+    border-radius: 0.5rem;
+    background: #FFE2EF;
+
+    color: #C81E67;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+
+/* Progress baren */
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+
+    background-color: #DED4E8;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 10%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+    background-color: var(--color-primary);
+}
+
+
+
