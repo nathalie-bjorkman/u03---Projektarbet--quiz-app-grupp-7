@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Tajm Landningssida</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/startscreen.css" />
+    <script src="../js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="/img/logo.svg" alt="Quiz Tajm" />
+      </div>
+    </header>
+    <main>
+      <!-- Pill -->
+      <div class="pill">
+        <img src="/img/sparkles.svg" alt="" />
+        <span>Fyra minuter. Tio frågor.</span>
+      </div>
+      <!-- Textarea -->
+      <div>
+        <div>
+          <h1 class="header">
+            Hur mycket kan du <span class="primarycolor">egentligen?</span>
+          </h1>
+        </div>
+        <p>
+          Välj dina favoritämnen, utmnana dig själv och se hur långt din
+          allmänbildning räcker!
+        </p>
+      </div>
+      <!-- Välj tema -->
+      <div>
+        <h2>Välj tema</h2>
+        <button>
+          <h3>Blandat</h3>
+          <p>Alla fyra ämnen</p>
+        </button>
+        <button>
+          <h3>Natur & värld</h3>
+          <p>Vetenskap och geografi</p>
+        </button>
+        <button>
+          <h3>Sverige & Kultur</h3>
+          <p>Svenskt och historiskt</p>
+        </button>
+      </div>
+      <!-- Info-box -->
+      <div>
+        <div>
+          <h4>Kvällens Quiz</h4>
+          <p>Blandat</p>
+        </div>
+        <div><span>10 frågor · 4 minuter</span></div>
+      </div>
+      <!-- CTA button -->
+      <button style="background-color: red">
+        <span>Start quiz</span><img src="/img/arrow-right-2.svg" alt="" />
+      </button>
+    </main>
+  </body>
 </html>
