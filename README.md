@@ -45,4 +45,4 @@ Resultatsidan
 
 Resultatsidan har fått en ny design med Quiz Tajm-logotypen, stöd för nattläge och en genomgång av svaren. Tidigare resultat kan visas i en lista och sparas i webbläsaren på den enhet som används.
 
-För att quizresultat ska sparas automatiskt behöver quizets kod anropa funktionen "saveQuizResult" när en quiz avslutas. Resultaten delas inte automatiskt mellan olika enheter eller webbläsare.
+För att quizresultat ska sparas automatiskt behöver quizets kod anropa funktionen "saveQuizResult" när en quiz avslutas. Resultaten delas inte automatiskt mellan olika enheter eller webbläsare.  
