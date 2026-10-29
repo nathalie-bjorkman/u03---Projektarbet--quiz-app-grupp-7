@@ -14,6 +14,11 @@ const answerTitleElements = [
     document.querySelector("#answer-titel-2"),
     document.querySelector("#answer-titel-3")
 ]
+const answerElements = [
+    document.querySelector("#answer-1"),
+    document.querySelector("#answer-2"),
+    document.querySelector("#answer-3")
+]
 const questionTitleElement = document.querySelector("#question-titel");
 const questionCategoryElement = document.querySelector("#question-category");
 const submitBtn = document.querySelector("#submit");
@@ -101,20 +106,16 @@ function decodeHTML(value) {
 }
 
 function resetAnswers() {
-    for(let n = 1; n <= 3; n++) {
-        document.getElementById(`answer-${n}`).classList.remove("answer-wrong");
-        document.getElementById(`answer-${n}`).classList.remove("answer-correct");
-    }
+    answerElements.forEach((answerElement) => {
+        answerElement.classList.remove("answer-wrong", "answer-correct", "answer-selected");
+    });
 }
 
 async function selectAnswer(answer_id) {
     // Applicera stilkodning på elementet
     resetAnswers();
     const answerElement = document.getElementById(`answer-${answer_id}`);
-    const answerTitel = document.getElementById(`answer-titel-${answer_id}`);
-
-    answerElement.classList.add(answer-selected);
-    return;
+    answerElement.classList.add("answer-selected");
 }
 
 async function validateAnswers() {
@@ -147,6 +148,10 @@ async function init() {
     // Visa frågorna
     console.log("Visar frågorna");
     await displayQuestions();
+
+    answerElements.forEach((answerElement, index) => {
+        answerElement.addEventListener("click", () => selectAnswer(index + 1));
+    });
 
     // Annars kan vi invänta svar
     console.log("Inväntar submit click (eventListener)");
