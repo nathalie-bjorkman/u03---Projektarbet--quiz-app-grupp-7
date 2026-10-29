@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
+    <script src="../js/timer.js" defer></script>
 </head>
 <!-- Timer - Nathalie -->
 
@@ -34,7 +35,7 @@
             <div class="quiz-timer" role="timer">
                 <span id="timer-icon" aria-hidden="true"><img src="../img/timer/timer.svg" alt=""></span>
                 <span class="time-left">
-                    04.00
+                    
                 </span>
             </div>
         </div>
@@ -53,8 +54,8 @@
 
             <div class="quiz-progress">
                 <div class="progress-info">
-                    <span id="question-count">Fråga 1 av 10</span>
-                    <span id="questions-left">9 kvar</span>
+                    <span id="question-count"></span>
+                    <span id="questions-left"></span>
                 </div>
 
                 <div class="progress-bar" role="progressbar" aria-label="Quizets framsteg" aria-valuemin="0"
