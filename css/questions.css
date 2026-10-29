@@ -109,10 +109,13 @@ main {
         opacity: 0.5;
     }
     .answer-wrong {
-        border-color: var(--color-error);
+        border-color: var(--color-error) !important;
     }
     .answer-correct {
-        border-color: var(--color-success);
+        border-color: var(--color-success) !important;
+    }
+    .answer-selected {
+        border-color: var(--color-accent) !important;
     }
 }
 
