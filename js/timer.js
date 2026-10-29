@@ -62,7 +62,7 @@ cancelButton.addEventListener("click", function () {
 
 // Set the quiz timer to 4 minutes
 
-let timeLeft = 2 * 60;
+let timeLeft = 5/* 4 * 60 */;
 
 // Function that displays the remaining time
 
