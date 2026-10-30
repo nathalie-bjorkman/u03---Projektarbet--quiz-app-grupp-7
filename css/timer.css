@@ -278,6 +278,22 @@ body {
     box-shadow: 0 10px 35px rgba(52, 23, 74, 0.18);
 }
 
+.timer-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color: #fcebf3;
+    border-radius: 12px;
+}
+
+#time-out-logo {
+    width: 30px;
+    height: 30px;
+    stroke: #ff0000;
+}
+
 #time-up-title {
     margin-bottom: 0.75rem;
     color: #03071e;
