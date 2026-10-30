@@ -13,58 +13,62 @@ const timerDisplay = document.querySelector(".time-left");
 
 const timerContainer = document.querySelector(".quiz-timer");
 
+// Hämtar avbryt knappen
+
+const cancelButton = document.getElementById("cancel-button");
+
 // Hämta time-up modal elementen
 
 const timeUpModal = document.getElementById("time-up-modal");
 const timeUpButton = document.getElementById("time-up-button");
 
-// Function that updates the quiz progress
+// Funktion som uppdaterar quiz framstegen
 
 function updateProgress(currentQuestion, totalQuestions) {
-  // Count how many questions that are left
+
+  // Räknar hur många frågor som är kvar
 
   const remainingQuestions = totalQuestions - currentQuestion;
 
-  // Count how much of the quiz that are done
+  // Räknar hur många frågor som är klara 
+
   const progress = (currentQuestion / totalQuestions) * 100;
 
-  // Update the text
+  // Uppdaterar texten
 
   questionCount.textContent = `Fråga ${currentQuestion} av ${totalQuestions}`;
 
   questionsLeft.textContent = `${remainingQuestions} kvar`;
 
-  // Update the progressbar
+  // Uppdaterar progressbaren
+
   progressFill.style.width = progress + "%";
 
-  // Update information for visual aid
+  // Uppdaterar informationen för visuellt hjälpmedel
 
   progressBar.setAttribute("aria-valuemax", totalQuestions);
   progressBar.setAttribute("aria-valuenow", currentQuestion);
 }
 
-// Testing with question 5 of 10
+// Testar med fråga 5 av 10, så att progressbaren ändras
+
 updateProgress(5, 10);
 
-// Get the cancel button
-
-const cancelButton = document.getElementById("cancel-button");
-
-// Listen after click on the button
+// Lyssnar efter klick på avbryt knappen
 
 cancelButton.addEventListener("click", function () {
   const confirmCancel = confirm("Är du säker på att du vill avbryta quizet?");
 
   if (confirmCancel) {
-    window.location = "../index.html";
+    window.location = "./index.html";
   }
 });
 
-// Set the quiz timer to 4 minutes
+// Quizets timer sätts på 4 minuter 
 
 let timeLeft = 5/* 4 * 60 */;
 
-// Function that displays the remaining time
+// Funktion som visar tiden som är kvar av quizet
 
 function displayTime() {
   const minutes = Math.floor(timeLeft / 60);
@@ -76,7 +80,7 @@ function displayTime() {
   timerDisplay.textContent = `${formattedMinutes} . ${formattedSeconds}`;
 }
 
-//Start the countdown
+// Nedräkningen startar
 
 function startTimer() {
   displayTime();
