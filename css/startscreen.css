@@ -2,18 +2,66 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 
 * {
-  margin: 0rem;
-  padding: 0rem;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
+  min-height: 100%;
   font-size: 62.5%;
+  background: linear-gradient(135deg, #f8e1d2 0%, #f7dce6 55%, #fff5fa 100%);
+  background-attachment: fixed;
 }
 
 body {
-  margin: 0rem 2rem;
-  color: var(--font-body);
+  font-family: var(--font-body);
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  background: linear-gradient(180deg, #f8e1d2 0%, #f7dce6 55%, #fff5fa 100%);
+}
+
+/* Gemensam styling för båda ringarna */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: 16rem;
+  height: 16rem;
+  border: 2.5rem solid #efd2df;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Övre vänstra ringen */
+body::before {
+  top: 12rem;
+  left: -12rem;
+}
+
+/* Nedre högra ringen */
+body::after {
+  bottom: 5rem;
+  right: -12rem;
+}
+
+h1 {
+  font-family: var(--font-family);
+}
+
+main {
+  padding-bottom: 16.4rem;
+}
+
+/* Placera innehållet framför ringarna */
+header,
+main {
+  position: relative;
+  z-index: 1;
+  margin-inline: 2rem;
 }
 
 header {
@@ -30,21 +78,32 @@ header {
   justify-content: center;
   align-items: center;
   width: fit-content;
-  margin-inline: auto;
+  margin: 14rem auto 0;
   padding: 0.8rem 1.2rem;
-  border-radius: 99999999rem;
-  background-color: #fcd34d;
   gap: 0.8rem;
-  margin-top: 14rem;
+
+  background-color: #fcd34d;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0.5rem 0 rgba(86, 32, 168, 0.15);
 }
 
 .pill span {
-  font-size: var(--font-size-p-xl);
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .pill img {
-  height: 1.2rem;
-  width: 1.2rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.body-startscreen {
+  padding: 1.8rem 2rem 0rem 2rem;
+  font-size: var(--font-size-p-xl);
+  color: var(--color-text-muted);
+  text-align: center;
 }
 
 .header {
@@ -60,9 +119,149 @@ h1 {
   padding-top: 2.4rem;
 }
 
-h1 span {
-}
-
 .primarycolor {
   color: var(--color-primary);
+}
+
+h2 {
+  padding-top: 2.8rem;
+  text-align: center;
+  font-size: var(--font-size-p-xl);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--font-size-p-xl);
+}
+
+.toggle-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.toggle-button {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 1.8rem 0.8rem;
+
+  background-color: #fffcfa;
+  border: 0.2rem solid #94869e;
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-body);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* Vald kategori */
+.toggle-button.active {
+  background-color: var(--color-bg-active);
+  border-color: var(--color-primary);
+}
+
+/* Hover */
+.toggle-button:hover {
+  border-color: var(--color-primary);
+}
+
+/* Tangentbordsfokus */
+.toggle-button:focus-visible {
+  outline: 0.3rem solid #168cff;
+  outline-offset: 0.3rem;
+}
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1.6rem;
+  background-color: #fffcfa;
+  border: 1px solid #e8ddec;
+  border-radius: var(--radius-md);
+
+  /* Mjuk lila skugga */
+  box-shadow: 0 0.8rem 1.2rem rgba(36, 20, 50, 0.18),
+    0 1.2rem 2.5rem rgba(86, 32, 168, 0.2);
+}
+
+.info-box-content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.info-box-content-left h4 {
+  color: #c81e67;
+  font-size: var(--font-size-p-sm);
+  font-weight: 700;
+}
+
+.info-box-content-left p {
+  font-size: var(--font-size-p-xl);
+  font-weight: 700;
+}
+
+.info-box-content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-info-span {
+  font-size: var(--font-size-p-sm);
+  color: var(--color-text-muted);
+}
+
+.start-quiz-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  width: 100%;
+  margin-top: 1.2rem;
+
+  /* Nya egenskaper */
+  box-shadow: 0 0.8rem 0 #35106e;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* När musen är över knappen */
+.start-quiz-button:hover {
+  transform: translateY(0.2rem);
+  box-shadow: 0 0.6rem 0 #35106e;
+}
+
+/* När knappen trycks ner */
+.start-quiz-button:active {
+  transform: translateY(0.8rem);
+  box-shadow: none;
+}
+
+/* När knappen får fokus via tangentbordet */
+.start-quiz-button:focus-visible {
+  outline: 0.3rem solid #168cff;
+  outline-offset: 0.3rem;
+}
+
+.start-quiz-button span {
+  font-size: var(--font-size-p-xl);
+  color: var(--color-secondary);
+  padding-right: 1.2rem;
+}
+
+/* iPad och desktop */
+@media (min-width: 768px) {
+  header,
+  main {
+    max-width: 548px;
+    margin-inline: auto;
+  }
 }

@@ -6,7 +6,7 @@
     <title>Quiz Tajm Landningssida</title>
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/startscreen.css" />
-    <script src="../js/main.js" defer></script>
+    <script src="../js/startscreen.js" defer></script>
   </head>
   <body>
     <!-- Header -->
@@ -28,38 +28,45 @@
             Hur mycket kan du <span class="primarycolor">egentligen?</span>
           </h1>
         </div>
-        <p>
-          Välj dina favoritämnen, utmnana dig själv och se hur långt din
-          allmänbildning räcker!
+        <p class="body-startscreen">
+          Spela själv eller tillsammans och sätt allmänbildningen på prov.
         </p>
       </div>
       <!-- Välj tema -->
       <div>
         <h2>Välj tema</h2>
-        <button>
-          <h3>Blandat</h3>
-          <p>Alla fyra ämnen</p>
-        </button>
-        <button>
-          <h3>Natur & värld</h3>
-          <p>Vetenskap och geografi</p>
-        </button>
-        <button>
-          <h3>Sverige & Kultur</h3>
-          <p>Svenskt och historiskt</p>
-        </button>
+        <div class="toggle-buttons">
+          <button
+            class="toggle-button active"
+            type="button"
+            aria-pressed="true"
+          >
+            <h3>Blandat</h3>
+            <p>Alla fyra ämnen</p>
+          </button>
+          <button class="toggle-button" type="button" aria-pressed="false">
+            <h3>Natur & värld</h3>
+            <p>Vetenskap och geografi</p>
+          </button>
+          <button class="toggle-button" type="button" aria-pressed="false">
+            <h3>Sverige & Kultur</h3>
+            <p>Svenskt och historiskt</p>
+          </button>
+        </div>
       </div>
       <!-- Info-box -->
-      <div>
-        <div>
+      <div class="info-box">
+        <div class="info-box-content-left">
           <h4>Kvällens Quiz</h4>
           <p>Blandat</p>
         </div>
-        <div><span>10 frågor · 4 minuter</span></div>
+        <div class="info-box-content-right">
+          <span class="quiz-info-span">10 frågor · 4 minuter</span>
+        </div>
       </div>
       <!-- CTA button -->
-      <button style="background-color: red">
-        <span>Start quiz</span><img src="/img/arrow-right-2.svg" alt="" />
+      <button class="start-quiz-button">
+        <span>Starta quiz</span><img src="/img/arrow-right-2.svg" alt="" />
       </button>
     </main>
   </body>
