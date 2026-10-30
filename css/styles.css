@@ -67,16 +67,6 @@ button {
   object-fit: contain;
 }
 
-.theme-button {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--purple);
-  font-size: 18px;
-}
-
 main {
   width: min(100%, 460px);
   margin: 0 auto;
@@ -397,38 +387,6 @@ h2 {
   color: var(--muted);
   font-size: 10px;
   text-align: center;
-}
-
-body.dark {
-  color-scheme: dark;
-  --surface: #282333;
-  --page: #211e2b;
-  --line: #3a3545;
-  --muted: #aaa3b5;
-  background: #17151e;
-  color: #f4eef8;
-}
-
-body.dark .app {
-  background: var(--page);
-}
-
-body.dark .brand,
-body.dark h1,
-body.dark h2,
-body.dark .review-question,
-body.dark .review-answer strong,
-body.dark .history-name {
-  color: #f4eef8;
-}
-
-body.dark .score-box,
-body.dark .history-item {
-  background: #302b3b;
-}
-
-body.dark .score-value {
-  color: #f4eef8;
 }
 
 @media (max-width: 420px) {

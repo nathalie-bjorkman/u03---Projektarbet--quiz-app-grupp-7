@@ -23,7 +23,6 @@
 */
 
 const STORAGE_KEY = "quiztajm_results_v1";
-const THEME_KEY = "quiztajm_theme_v1";
 
 const latestElement = document.getElementById("latestResult");
 const reviewElement = document.getElementById("answerReview");
@@ -356,33 +355,11 @@ toggleHistoryButton.addEventListener("click", () => {
   renderHistory();
 });
 
-/* Temaväxling */
-const themeToggle = document.getElementById("themeToggle");
-const brandLogo = document.querySelector(".brand-logo");
-
-function applyTheme(theme) {
-  const isDark = theme === "dark";
-  document.body.classList.toggle("dark", isDark);
-  themeToggle.textContent = isDark ? "☀" : "☾";
-  brandLogo.src = isDark
-    ? "../assets/quiz-tajm-logo-dark.png"
-    : "../assets/quiz-tajm-logo.png";
-
-  try {
-    localStorage.setItem(THEME_KEY, theme);
-  } catch {
-    // Temat fungerar även om lagring inte är tillgänglig.
-  }
-}
-
-themeToggle.addEventListener("click", () => {
-  applyTheme(document.body.classList.contains("dark") ? "light" : "dark");
-});
-
 /*
   Dessa knappar navigerar inte till en påhittad quizsida.
   Koppla dem till dina faktiska sidor om du har separata quizfiler.
 */
+
 document.getElementById("playAgain").addEventListener("click", () => {
   window.history.back();
 });
@@ -390,12 +367,5 @@ document.getElementById("playAgain").addEventListener("click", () => {
 document.getElementById("homeButton").addEventListener("click", () => {
   window.location.href = "index.html";
 });
-
-/* Initiering */
-try {
-  applyTheme(localStorage.getItem(THEME_KEY) || "light");
-} catch {
-  applyTheme("light");
-}
 
 renderBoard();
