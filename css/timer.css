@@ -247,7 +247,6 @@ body {
 
 /* Ruta när tiden är slut */
 
-
 .modal[hidden] {
     display: none;
 }
@@ -256,6 +255,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 10;
+    
 
     display: flex;
     justify-content: center;
@@ -268,12 +268,15 @@ body {
 .modal-content {
     width: 22rem;
     max-width: 100%;
-    height: 60%;
+    height: auto;
     padding: 2rem;
+
+    border-right: 10px solid #FBBF24;
+    border-bottom: 10px solid #FBBF24;
+
 
     text-align: center;
     background-color: #FFFCF8;
-    border: 1px solid #EDE4FF;
     border-radius: 1.5rem;
     box-shadow: 0 10px 35px rgba(52, 23, 74, 0.18);
 }
@@ -288,33 +291,62 @@ body {
     border-radius: 12px;
 }
 
-#time-out-logo {
+.time-out-logo {
     width: 30px;
     height: 30px;
     stroke: #ff0000;
 }
 
+#quiz-close-text {
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    color: #ae2012;
+    font-weight: 600;
+    font-family: var(--font-body);
+}
+
 #time-up-title {
-    margin-bottom: 0.75rem;
     color: #03071e;
-    font-size: 700;
+    font-weight: 700;
     font-family: var(--font-family);
 }
 
-.modal-content p {
-    margin-bottom: 1.5rem;
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
+#how-many-correct-answers {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-family);
     line-height: 1.5;
+    font-weight: 700;
+}
+
+#how-many-correct-answers .correct-answer {
+    color: var(--color-primary);
+    font-size: 4rem;
+    font-family: var(--font-family);
+}
+
+#how-fast {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-family: var(--font-family);
 }
 
 #time-up-button {
+    display: inline-flex;
+    justify-content: center;
     padding: 0.75rem 1.5rem;
+    width: 100%;
 
     color: #ffffff;
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 700;
+
+    box-shadow: 0 6px #2f105e;
+    transition: all 0.1s ease;
+    position: relative;
 
     background-color: var(--color-primary);
     border: none;
@@ -324,6 +356,14 @@ body {
 
 #time-up-button:hover {
     background-color: #421783;
+    box-shadow: 0 6px #1a0737;
+}
+
+#time-up-button:active {
+    /* Minskar skuggan så den ser plattare ut */
+    box-shadow: 0 4px #2471a3;
+    /* Flyttar ner knappen så det ser ut som att den trycks in */
+    transform: translateY(4px);
 }
 
 
