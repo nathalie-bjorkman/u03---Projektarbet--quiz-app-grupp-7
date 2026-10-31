@@ -125,13 +125,47 @@ body {
     max-width: 47.5rem;
     width: 5.91rem;
     height: 1.44rem;
+    margin-bottom: auto;
+    margin-top: 1rem;
 
 }
+
+/* Avbryt knapp */
+
+#cancel-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    
+    margin-left: auto;
+    margin-top: 0.75rem;
+
+    border-radius: var(--radius-sm);
+    border: 1.304px solid #8F8099;
+    background: #FFFCF8;
+
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+}
+
+#cancel-button:hover {
+    cursor: pointer;
+    border: 1px solid #bc3908;
+    background-color: #fbe9e6;
+    color: #bc3908;
+}
+
 
 /* Timer stylling */
 
 .quiz-timer {
     display: inline-flex;
+    text-align: center;
     min-height: 2.625rem;
     padding: 0.5rem 0.75rem;
     align-items: center;
@@ -157,36 +191,6 @@ body {
     border-color: #ff6b00;
 }
 
-/* Avbryt knapp */
-
-#cancel-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 2.5rem;
-    padding: 0.5rem 0.75rem;
-    
-    margin-left: auto;
-    margin-right: var(--margin-right);
-    margin-top: 0.75rem;
-
-    border-radius: var(--radius-sm);
-    border: 1.304px solid #8F8099;
-    background: #FFFCF8;
-
-    color: var(--color-text-muted);
-    font-size: 0.82rem;
-    font-family: var(--font-body);
-    font-weight: 700;
-}
-
-#cancel-button:hover {
-    cursor: pointer;
-    border: 1px solid #bc3908;
-    background-color: #fbe9e6;
-    color: #bc3908;
-}
 
 /* Framsteg i quizet, vilken fråga man är på, samt hur många man har kvar */
 
@@ -367,3 +371,59 @@ body {
 }
 
 
+/* Tablet media query */
+
+@media(min-width: 768px) {
+    .cancel-timer-container {
+        display: contents;
+    }
+
+    .timer-header {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .quiz-logo {
+        order: 1;
+        margin: 0;
+    }
+
+    #cancel-button {
+        order: 2;
+        margin: 0;
+    }
+
+    .quiz-timer {
+        order: 3;
+    }
+
+    .quiz-progress {
+        padding: 1.5rem;
+    }
+}
+
+/* Desktop media qery */
+
+@media(min-width: 1200px) {
+    .decoration-circle {
+        position: absolute;
+        top: 3.5rem;
+        left: 2rem;
+    
+        width: 5rem;
+        height: 5rem;
+    
+        border: 0.875rem solid rgba(109, 40, 217, 0.11);
+        border-radius: 50px;
+    }
+
+    #timer-progress {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .decoration-bar {
+        top: 9rem;
+        left: 5rem;
+    }
+}
