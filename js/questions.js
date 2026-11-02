@@ -142,6 +142,11 @@ async function validateAnswers() {
 }
 
 async function init() {
+  // questions.js kan läsa vilken kategori användaren valde på startsidan.
+  const selectedCategory =
+    sessionStorage.getItem("selectedCategory") ?? "blandat";
+  console.log(`Vald kategori från sessionStorage: ${selectedCategory}`);
+
   // Kontrollera om det inte finns frågor inhämtade och cachade
   if (!localStorage.getItem("questions")) {
     // Inhämtar och cachar kategorierna och första omgång frågor
