@@ -24,3 +24,13 @@ categoryButtons.forEach((button) => {
     console.log(`Vald kategori: ${selectedCategory}`);
   });
 });
+
+// När användaren trycker på start kopplas den valda kategorin till localStorage
+startButton.addEventListener("click", () => {
+  const selectedButton = document.querySelector(".toggle-button.active");
+  const selectedCategory = selectedButton.dataset.category;
+
+  sessionStorage.setItem("selectedCategory", selectedCategory);
+
+  console.log(`Vald kategori sparad i sessionStorage: ${selectedCategory}`);
+});
