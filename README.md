@@ -41,8 +41,4 @@ Vi använde även Figma Make för att generera designen. Vid första anblick så
 
 Det visade att även om Figma Make snabbt kan skapa ett visuellt tilltalande resultat behöver designen fortfarande granskas och justeras manuellt.
 
-Resultatsidan
-
-Resultatsidan har fått en ny design med Quiz Tajm-logotypen, stöd för nattläge och en genomgång av svaren. Tidigare resultat kan visas i en lista och sparas i webbläsaren på den enhet som används.
-
-För att quizresultat ska sparas automatiskt behöver quizets kod anropa funktionen "saveQuizResult" när en quiz avslutas. Resultaten delas inte automatiskt mellan olika enheter eller webbläsare.  
+Resultatsidan har fått en ny design med Quiz Tajm-logotypen, stöd för nattläge och en genomgång av svaren. Logotypen finns som en SVG med transparent bakgrund i assets. 
