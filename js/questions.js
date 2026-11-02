@@ -9,6 +9,12 @@ let categories = [
   // { id:Integer, name:String }
 ];
 
+const categoryMap = {
+  blandat: null,
+  natur: [17, 22],
+  kultur: [23, 12, 25],
+};
+
 const answerTitleElements = [
   document.querySelector("#answer-titel-1"),
   document.querySelector("#answer-titel-2"),
@@ -147,6 +153,16 @@ async function init() {
     sessionStorage.getItem("selectedCategory") ?? "blandat";
   console.log(`Vald kategori från sessionStorage: ${selectedCategory}`);
 
+  const categoryIds = categoryMap[selectedCategory];
+  console.log("Kategori-ID:n", categoryIds);
+
+  const categoryId =
+    categoryIds === null
+      ? null
+      : categoryIds[Math.floor(Math.random() * categoryIds.length)];
+
+  console.log("API-kategri:", categoryId);
+
   // Kontrollera om det inte finns frågor inhämtade och cachade
   if (!localStorage.getItem("questions")) {
     // Inhämtar och cachar kategorierna och första omgång frågor
@@ -154,7 +170,7 @@ async function init() {
     const categoryData = await getCategoryNames();
     localStorage.setItem("categories", JSON.stringify(categoryData));
     console.log("Inhämtar frågeställning");
-    const questionData = await getAPIQuestions();
+    const questionData = await getAPIQuestions(categoryId);
     localStorage.setItem("questions", JSON.stringify(questionData));
   }
 

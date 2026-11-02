@@ -31,6 +31,7 @@ startButton.addEventListener("click", () => {
   const selectedCategory = selectedButton.dataset.category;
 
   sessionStorage.setItem("selectedCategory", selectedCategory);
+  window.location.href = "questions.html";
 
   console.log(`Vald kategori sparad i sessionStorage: ${selectedCategory}`);
 });
