@@ -2,7 +2,7 @@
   color-scheme: light;
   font-family: Arial, Helvetica, sans-serif;
   color: #282235;
-  background: #e8e4e6;
+  background: linear-gradient(135deg, #f8e1d2 0%, #f7dce6 55%, #fff5fa 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -10,7 +10,6 @@
   --purple-dark: #431888;
   --muted: #817a89;
   --surface: #fffdfb;
-  --page: #fff9f7;
   --line: #eee6e4;
   --green: #15966c;
   --red: #df4853;
@@ -24,7 +23,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: #e8e4e6;
+  background: linear-gradient(180deg, #f8e1d2 0%, #f7dce6 55%, #fff5fa 100%);
   color: #282235;
 }
 
@@ -42,7 +41,7 @@ button {
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 24px 28px;
-  background: var(--page);
+  background: #fff;
   box-shadow: 0 0 32px rgb(52 37 44 / 8%);
 }
 
