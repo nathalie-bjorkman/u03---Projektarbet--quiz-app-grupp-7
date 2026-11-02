@@ -163,16 +163,14 @@ async function init() {
 
   console.log("API-kategri:", categoryId);
 
-  // Kontrollera om det inte finns frågor inhämtade och cachade
-  if (!localStorage.getItem("questions")) {
-    // Inhämtar och cachar kategorierna och första omgång frågor
-    console.log("Inhämtar kategorier");
-    const categoryData = await getCategoryNames();
-    localStorage.setItem("categories", JSON.stringify(categoryData));
-    console.log("Inhämtar frågeställning");
-    const questionData = await getAPIQuestions(categoryId);
-    localStorage.setItem("questions", JSON.stringify(questionData));
-  }
+  // Hämta nya frågor baserat på vald kategori
+  const questionData = await getAPIQuestions(categoryId);
+
+  // Spara frågorna i localStorage
+  localStorage.setItem("questions", JSON.stringify(questionData));
+
+  // Kontrollera vilken kategori API:et returnerade
+  console.log("Hämtad kategori:", questionData[0].category);
 
   // Visa frågorna
   console.log("Visar frågorna");
