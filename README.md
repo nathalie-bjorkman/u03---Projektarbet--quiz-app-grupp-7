@@ -1,6 +1,6 @@
 # Quiz Tajm 
 
-## Teammedlemmar:
+## Teammedlemmar
 - Nathalie
 - Marcus
 - Lumi
@@ -13,10 +13,10 @@ Grundidén till appen utgick från de skisser vi tog fram med UX-metoden Crazy 8
 
 Appen består av fyra huvudsakliga skärmar:
 
-**Startskärm:** Användaren får information om quizet, hur det fungerar och hur lång tid det tar.
-**Spelskärm:** Användaren svarar på frågor med svarsalternativen 1, X och 2.
-**Avslutningsskärm:** Visas när quizet är färdigt.
-**Resultatskärm:** Användaren kan se sitt resultat från quizet.
+- **Startskärm:** Användaren får information om quizet, hur det fungerar och hur lång tid det tar.
+- **Spelskärm:** Användaren svarar på frågor med svarsalternativen 1, X och 2.
+- **Avslutningsskärm:** Visas när quizet är färdigt.
+- **Resultatskärm:** Användaren kan se sitt resultat från quizet.
 
 ### Skisser
 https://www.figma.com/design/dDtTZeF3oq0rlZFnJ7OF5K/U03---Quizapp?node-id=0-1&t=fjmURly7jSthj4Vm-1
