@@ -1,4 +1,6 @@
 const categoryButtons = document.querySelectorAll(".toggle-button");
+const infoHeading = document.querySelector(".info-box-content-left p");
+const startButton = document.querySelector(".start-quiz-button");
 
 // Går igenom alla knappar och lägger till en klicklyssnare.
 categoryButtons.forEach((button) => {
@@ -6,9 +8,19 @@ categoryButtons.forEach((button) => {
     // Går igenom alla knappar och tar bort active.
     categoryButtons.forEach((otherButton) => {
       otherButton.classList.remove("active");
+      // Tillgänglighet
+      otherButton.setAttribute("aria-pressed", "false");
     });
 
     // Gör den klickade knappen aktiv.
     button.classList.add("active");
+    // Tillgänglighet
+    button.setAttribute("aria-pressed", "true");
+
+    infoHeading.textContent = button.querySelector("h3").textContent.trim();
+
+    // Kopplar rätt kategori till knappen med hjälp av data attributet data-category.
+    const selectedCategory = button.dataset.category;
+    console.log(`Vald kategori: ${selectedCategory}`);
   });
 });
