@@ -17,20 +17,9 @@ categoryButtons.forEach((button) => {
 
     // Gör den klickade knappen aktiv.
     button.classList.add("active");
-<<<<<<< HEAD
 
     // Uppdaterar H3 med texten från den klickade knappen.
     infoHeading.textContent = button.querySelector("h3").textContent.trim();
-=======
-    // Tillgänglighet
-    button.setAttribute("aria-pressed", "true");
-
-    infoHeading.textContent = button.querySelector("h3").textContent.trim();
-
-    // Kopplar rätt kategori till knappen med hjälp av data attributet data-category.
-    const selectedCategory = button.dataset.category;
-    console.log(`Vald kategori: ${selectedCategory}`);
->>>>>>> feature/quiz-categories
   });
 });
 
