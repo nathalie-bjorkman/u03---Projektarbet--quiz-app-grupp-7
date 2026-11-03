@@ -29,26 +29,26 @@
             <!-- logo -->
             <img src="../img/timer/logo.svg" alt="Quiz Tajm" class="quiz-logo">
 
-
-            <!-- Timer -->
-
-            <div class="quiz-timer" role="timer">
-                <span id="timer-icon" aria-hidden="true"><img src="../img/timer/timer.svg" alt=""></span>
-                <span class="time-left">
-                    
-                </span>
-            </div>
-        </div>
-
-        <div id="cancel-progress">
-
             <!-- Avbryt knappen -->
 
-            <div class="cancel">
+            <div class="cancel-timer-container">
+                
+                <div class="quiz-timer" role="timer">
+                    <span id="timer-icon" aria-hidden="true"><img src="../img/timer/timer.svg" alt=""></span>
+                    <span class="time-left">
+                    </span>
+                </div>
                 <button id="cancel-button">
                     Avbryt
                 </button>
             </div>
+
+            <!-- Timer -->
+
+
+        </div>
+
+        <div id="progress">
 
             <!-- Framsteg -->
 
@@ -69,18 +69,26 @@
     <div id="time-up-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="time-up-title" hidden>
 
         <div class="modal-content">
-            <img class="time-out-logo" src="../img/timer/timer.svg" alt="">
+            <div class="timer-container">
+                <svg class="time-out-logo" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                    fill="none">
+                    <path
+                        d="M17.0755 9.99529C17.0755 13.9055 13.9057 17.0753 9.99553 17.0753C6.08535 17.0753 2.91553 13.9055 2.91553 9.99529C2.91553 6.08511 6.08535 2.91528 9.99553 2.91528C13.9057 2.91528 17.0755 6.08511 17.0755 9.99529Z"
+                        stroke-width="1.66588" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.99512 6.24707V10.4118L12.6605 11.9944" stroke-width="1.66588" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
 
-            <p>QUIZET ÄR AVSLUTAT</p>
+            <p id="quiz-close-text">QUIZET ÄR AVSLUTAT</p>
 
             <h2 id="time-up-title">Tiden är slut!</h2>
 
-            <h3><span class="correct-answer">5</span> av 10 rätt</h3>
+            <h3 id="how-many-correct-answers"><span class="correct-answer">0</span> av 10 rätt</h3>
 
-            <p>klart på 4:00. Se svaren och vad du kan ta med dig till nästa omgång</p>
-
+            <p id="how-fast">Klart på 4:00. Se svaren och vad du kan ta med dig till nästa omgång</p>
             <button id="time-up-button" type="button">
-                Se rseultat ->
+                Se resultat <img src="../img/arrow-right-2.svg" alt="">
             </button>
         </div>
     </div>
