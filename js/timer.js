@@ -26,6 +26,8 @@ const timeUpButton = document.getElementById("time-up-button");
 
 function updateProgress(currentQuestion, totalQuestions) {
 
+  if (totalQuestions === 0) return;
+
   // Räknar hur många frågor som är kvar
 
   const remainingQuestions = totalQuestions - currentQuestion;
@@ -50,7 +52,7 @@ function updateProgress(currentQuestion, totalQuestions) {
   progressBar.setAttribute("aria-valuenow", currentQuestion);
 }
 
-// Testar med fråga 5 av 10, så att progressbaren ändras
+// Testar med fråga 5 av 10, så att progressbaren ändras VIKTIGT - TA BORT DETTA NÄR ALL JAVASCRIPT ÄR KLAR!!
 
 updateProgress(5, 10);
 
@@ -66,9 +68,9 @@ cancelButton.addEventListener("click", function () {
 
 // Quizets timer sätts på 4 minuter 
 
-let timeLeft = 5/* 4 * 60 */;
+let timeLeft = 4 * 60;
 
-// Funktion som visar tiden som är kvar av quizet
+// Funktion som visar tiden som är kvar av quizet 
 
 function displayTime() {
   const minutes = Math.floor(timeLeft / 60);
