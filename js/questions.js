@@ -5,9 +5,6 @@
 */
 
 const API_ENDPOINT = "https://opentdb.com/api.php";
-let categories = [
-  // { id:Integer, name:String }
-];
 
 const categoryMap = {
   blandat: null,
@@ -29,20 +26,20 @@ const questionTitleElement = document.querySelector("#question-titel");
 const questionCategoryElement = document.querySelector("#question-category");
 const submitBtn = document.querySelector("#submit");
 
+let questions = [];
+let currentQuestionIndex = 0;
+let selectedAnswerIndex = null;
+let correctAnswerIndex = null;
+
 // Source - https://stackoverflow.com/a/2450976
 // Posted by ChristopheD, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-10-22, License - CC BY-SA 4.0
-
 function shuffle(array) {
   let currentIndex = array.length;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
+  while (currentIndex !== 0) {
+    const randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],
@@ -88,26 +85,6 @@ async function getAPIQuestions(categoryId, difficulty = "easy", amount = 10) {
   return data.results;
 }
 
-function displayQuestions() {
-  const questions = JSON.parse(localStorage.getItem("questions"));
-  if (!Array.isArray(questions) || questions.length === 0) {
-    throw new Error("Det finns inga frågor att visa.");
-  }
-
-  const question = questions[0];
-  questionTitleElement.textContent = decodeHTML(question.question);
-  questionCategoryElement.textContent = decodeHTML(question.category);
-
-  const answers = shuffle([
-    ...question.incorrect_answers.slice(0, answerTitleElements.length - 1),
-    question.correct_answer,
-  ]);
-
-  answers.forEach((answer, index) => {
-    answerTitleElements[index].textContent = decodeHTML(answer);
-  });
-}
-
 function decodeHTML(value) {
   return new DOMParser().parseFromString(value, "text/html").documentElement
     .textContent;
@@ -121,71 +98,117 @@ function resetAnswers() {
       "answer-selected"
     );
   });
+  selectedAnswerIndex = null;
 }
 
-async function selectAnswer(answer_id) {
-  // Applicera stilkodning på elementet
+function selectAnswer(answerIndex) {
   resetAnswers();
-  const answerElement = document.getElementById(`answer-${answer_id}`);
-  answerElement.classList.add("answer-selected");
+  selectedAnswerIndex = answerIndex;
+  answerElements[answerIndex].classList.add("answer-selected");
 }
 
-async function validateAnswers() {
-  // Kontrollera svar
-  console.log("Validerar svaret");
-  answerTitleElements.map((answer) => {
-    // Visa rätt eller fel
-    if (
-      answerElement.innerHTML == localStorage.getItem("correctAnswer") &&
-      answerElement.classList.contains("answer-selected")
-    ) {
-      answerElement.classList.add("answer-correct");
-      answerElement.classList.remove("answer-selected");
-    } else answerElement.classList.add("answer-wrong");
+function askQuestion(question) {
+  questionTitleElement.textContent = decodeHTML(question.question);
+  questionCategoryElement.textContent = decodeHTML(question.category);
+
+  const answers = shuffle([
+    ...question.incorrect_answers.slice(0, answerTitleElements.length - 1),
+    question.correct_answer,
+  ]);
+  correctAnswerIndex = answers.indexOf(question.correct_answer);
+
+  resetAnswers();
+  answers.forEach((answer, index) => {
+    answerTitleElements[index].textContent = decodeHTML(answer);
   });
 
-  // Nästa steg
+  if (currentQuestionIndex === 0 && typeof window.startQuizTimer === "function") {
+    window.startQuizTimer();
+  }
+  if (typeof window.updateProgress === "function") {
+    window.updateProgress(currentQuestionIndex + 1, questions.length);
+  }
+}
+
+function validateAnswers() {
+  if (selectedAnswerIndex === null) return null;
+
+  answerElements.forEach((answerElement, index) => {
+    if (index === correctAnswerIndex) {
+      answerElement.classList.add("answer-correct");
+    } else if (index === selectedAnswerIndex) {
+      answerElement.classList.add("answer-wrong");
+    }
+    answerElement.classList.remove("answer-selected");
+  });
+
+  return selectedAnswerIndex === correctAnswerIndex;
+}
+
+function submitAnswer(event) {
+  event.preventDefault();
+  const isCorrect = validateAnswers();
+  if (isCorrect === null) {
+    alert("Vänligen ge ett svar");
+    return;
+  }
+
+  alert(isCorrect ? "Rätt svar!" : "Fel svar!");
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex === questions.length) {
+    if (typeof window.finishQuiz === "function") {
+      window.finishQuiz("completed");
+    }
+    return;
+  }
+
+  askQuestion(questions[currentQuestionIndex]);
+}
+
+async function loadQuestions(categoryId) {
+  const storedCategoryId = localStorage.getItem("questionsCategoryId");
+  let storedQuestions;
+
+  try {
+    storedQuestions = JSON.parse(localStorage.getItem("questions") ?? "null");
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) throw error;
+  }
+
+  if (
+    Array.isArray(storedQuestions) &&
+    storedQuestions.length > 0 &&
+    storedCategoryId === String(categoryId)
+  ) {
+    return storedQuestions;
+  }
+
+  const fetchedQuestions = await getAPIQuestions(categoryId);
+  localStorage.setItem("questions", JSON.stringify(fetchedQuestions));
+  localStorage.setItem("questionsCategoryId", String(categoryId));
+  return fetchedQuestions;
 }
 
 async function init() {
-  // questions.js kan läsa vilken kategori användaren valde på startsidan.
   const selectedCategory =
     sessionStorage.getItem("selectedCategory") ?? "blandat";
-  console.log(`Vald kategori från sessionStorage: ${selectedCategory}`);
-
-  const categoryIds = categoryMap[selectedCategory];
-  console.log("Kategori-ID:n", categoryIds);
-
+  const categoryIds = categoryMap[selectedCategory] ?? null;
   const categoryId =
     categoryIds === null
       ? null
       : categoryIds[Math.floor(Math.random() * categoryIds.length)];
 
-  console.log("API-kategri:", categoryId);
-
-  // Hämta nya frågor baserat på vald kategori
-  const questionData = await getAPIQuestions(categoryId);
-
-  // Spara frågorna i localStorage
-  localStorage.setItem("questions", JSON.stringify(questionData));
-
-  // Kontrollera vilken kategori API:et returnerade
-  console.log("Hämtad kategori:", questionData[0].category);
-
-  // Visa frågorna
-  console.log("Visar frågorna");
-  await displayQuestions();
+  questions = await loadQuestions(categoryId);
+  if (!Array.isArray(questions) || questions.length === 0) {
+    throw new Error("Det finns inga frågor att visa.");
+  }
 
   answerElements.forEach((answerElement, index) => {
-    answerElement.addEventListener("click", () => selectAnswer(index + 1));
+    answerElement.addEventListener("click", () => selectAnswer(index));
   });
-
-  // Annars kan vi invänta svar
-  console.log("Inväntar submit click (eventListener)");
-  submitBtn.addEventListener("click", async () => {
-    console.log("SUBMIT CLICK!");
-    validate();
-  });
+  submitBtn.addEventListener("click", submitAnswer);
+  askQuestion(questions[currentQuestionIndex]);
 }
 
 init();
