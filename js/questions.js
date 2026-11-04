@@ -136,16 +136,6 @@ function askQuestion(question) {
 
 function validateAnswers() {
   if (selectedAnswerIndex === null) return null;
-
-  answerElements.forEach((answerElement, index) => {
-    if (index === correctAnswerIndex) {
-      answerElement.classList.add("answer-correct");
-    } else if (index === selectedAnswerIndex) {
-      answerElement.classList.add("answer-wrong");
-    }
-    answerElement.classList.remove("answer-selected");
-  });
-
   return selectedAnswerIndex === correctAnswerIndex;
 }
 
@@ -157,7 +147,6 @@ function submitAnswer(event) {
     return;
   }
 
-  alert(isCorrect ? "Rätt svar!" : "Fel svar!");
   quizAnswers.push({
     question: decodeHTML(questions[currentQuestionIndex].question),
     options: currentOptions,
