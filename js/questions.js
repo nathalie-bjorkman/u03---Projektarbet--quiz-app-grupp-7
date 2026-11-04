@@ -154,6 +154,12 @@ function submitAnswer(event) {
   }
 
   alert(isCorrect ? "Rätt svar!" : "Fel svar!");
+  const results = JSON.parse(localStorage.getItem("results") ?? "[]");
+  results.push({
+    question: decodeHTML(questions[currentQuestionIndex].question),
+    isCorrect,
+  });
+  localStorage.setItem("results", JSON.stringify(results));
   currentQuestionIndex++;
 
   if (currentQuestionIndex === questions.length) {
