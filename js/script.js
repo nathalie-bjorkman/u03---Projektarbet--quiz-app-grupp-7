@@ -25,7 +25,7 @@
 const STORAGE_KEY = "quiztajm_results_v1";
 
 const latestElement = document.getElementById("latestResult");
-const reviewElement = document.getElementById("answerReview");m
+const reviewElement = document.getElementById("answerReview");
 const historyElement = document.getElementById("historyList");
 const answerCountElement = document.getElementById("answerCount");
 const toggleHistoryButton = document.getElementById("toggleHistory");

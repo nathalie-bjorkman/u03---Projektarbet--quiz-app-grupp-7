@@ -5,6 +5,7 @@
 */
 
 const API_ENDPOINT = "https://opentdb.com/api.php";
+const RESULT_STORAGE_KEY = "quiztajm_results_v1";
 
 const categoryMap = {
   blandat: null,
@@ -30,6 +31,8 @@ let questions = [];
 let currentQuestionIndex = 0;
 let selectedAnswerIndex = null;
 let correctAnswerIndex = null;
+let currentOptions = [];
+let quizAnswers = [];
 
 // Source - https://stackoverflow.com/a/2450976
 // Posted by ChristopheD, modified by community. See post 'Timeline' for change history
@@ -115,11 +118,12 @@ function askQuestion(question) {
     ...question.incorrect_answers.slice(0, answerTitleElements.length - 1),
     question.correct_answer,
   ]);
+  currentOptions = answers.map(decodeHTML);
   correctAnswerIndex = answers.indexOf(question.correct_answer);
 
   resetAnswers();
-  answers.forEach((answer, index) => {
-    answerTitleElements[index].textContent = decodeHTML(answer);
+  currentOptions.forEach((answer, index) => {
+    answerTitleElements[index].textContent = answer;
   });
 
   if (currentQuestionIndex === 0 && typeof window.startQuizTimer === "function") {
@@ -154,18 +158,29 @@ function submitAnswer(event) {
   }
 
   alert(isCorrect ? "Rätt svar!" : "Fel svar!");
-  const results = JSON.parse(localStorage.getItem("results") ?? "[]");
-  results.push({
+  quizAnswers.push({
     question: decodeHTML(questions[currentQuestionIndex].question),
-    isCorrect,
+    options: currentOptions,
+    selected: selectedAnswerIndex,
+    correct: correctAnswerIndex,
   });
-  localStorage.setItem("results", JSON.stringify(results));
   currentQuestionIndex++;
 
   if (currentQuestionIndex === questions.length) {
-    if (typeof window.finishQuiz === "function") {
-      window.finishQuiz("completed");
-    }
+    const savedResults = JSON.parse(
+      localStorage.getItem(RESULT_STORAGE_KEY) ?? "[]"
+    );
+    savedResults.push({
+      id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      title: "Quiz Tajm",
+      date: new Date().toISOString(),
+      score: quizAnswers.filter((answer) => answer.selected === answer.correct)
+        .length,
+      total: quizAnswers.length,
+      answers: quizAnswers,
+    });
+    localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(savedResults));
+    window.location.href = "./result.html";
     return;
   }
 
