@@ -88,23 +88,41 @@ async function getAPIQuestions(categoryId, difficulty = "easy", amount = 10) {
   return data.results;
 }
 
-function displayQuestions() {
-  const questions = JSON.parse(localStorage.getItem("questions"));
-  if (!Array.isArray(questions) || questions.length === 0) {
-    throw new Error("Det finns inga frågor att visa.");
-  }
+function askQuestion(question) {
 
-  const question = questions[0];
+  // Presentera frågan
   questionTitleElement.textContent = decodeHTML(question.question);
   questionCategoryElement.textContent = decodeHTML(question.category);
 
+  // Visa svaren i en slumpmässig ordning för att undvika fusk
   const answers = shuffle([
     ...question.incorrect_answers.slice(0, answerTitleElements.length - 1),
     question.correct_answer,
   ]);
 
+  // Presentera svaren
   answers.forEach((answer, index) => {
     answerTitleElements[index].textContent = decodeHTML(answer);
+  });
+
+  // Invänta svar från användaren
+  answerElements.forEach((answerElement, index) => {
+    answerElement.addEventListener("click", () => selectAnswer(index + 1));
+  });
+
+  // Annars kan vi invänta svar
+  console.log("Inväntar svar från användare");
+  submitBtn.addEventListener("click", () => {
+    // Kontrollera svar
+    switch(validateAnswers()) {
+      case null:
+        alert("Vänligen ge ett svar");
+        return;
+      case true:
+        alert("Rätt svar!");
+      case false:
+        alert("Fel svar!");
+    }
   });
 }
 
@@ -133,7 +151,13 @@ async function selectAnswer(answer_id) {
 async function validateAnswers() {
   // Kontrollera svar
   console.log("Validerar svaret");
-  answerTitleElements.map((answer) => {
+  // Har svar getts?
+  let answered = false;
+  answerTitleElements.forEach((answerElement) => {
+    if(answerElement.classList.contains("answer-selected")) answered = true;
+  });
+  if(!answered) return null;
+  return answerTitleElements.forEach((answerElement) => {
     // Visa rätt eller fel
     if (
       answerElement.innerHTML == localStorage.getItem("correctAnswer") &&
@@ -141,10 +165,10 @@ async function validateAnswers() {
     ) {
       answerElement.classList.add("answer-correct");
       answerElement.classList.remove("answer-selected");
+      return true; // BRA SVAR!
     } else answerElement.classList.add("answer-wrong");
+    return false; // Inget bra svar
   });
-
-  // Nästa steg
 }
 
 async function init() {
@@ -156,6 +180,7 @@ async function init() {
   const categoryIds = categoryMap[selectedCategory];
   console.log("Kategori-ID:n", categoryIds);
 
+  // Väljer slumpmässigt ID
   const categoryId =
     categoryIds === null
       ? null
@@ -163,29 +188,30 @@ async function init() {
 
   console.log("API-kategri:", categoryId);
 
-  // Hämta nya frågor baserat på vald kategori
-  const questionData = await getAPIQuestions(categoryId);
+  // Kontrollera om frågor redan finns, och i samma kategori
+  // Wrapper funktion som hämtar frågorna
+  async function getQuestions_(categoryId) {
+    // Och i samma kategori
+    // Hämta nya frågor baserat på vald kategori
+    console.log("Hämtar frågorna");
+    const questionData = await getAPIQuestions(categoryId);
 
-  // Spara frågorna i localStorage
-  localStorage.setItem("questions", JSON.stringify(questionData));
+    // Spara frågorna i localStorage
+    localStorage.setItem("questions", JSON.stringify(questionData));
+  }
 
-  // Kontrollera vilken kategori API:et returnerade
-  console.log("Hämtad kategori:", questionData[0].category);
+  let questions = JSON.parse(localStorage.getItem("questions") ?? "null");
+  if(!questions || questions == "null") await getQuestions_(categoryId);
+  else if(questions[0].category != categoryId) await getQuestions_(categoryId);
+  questions = JSON.parse(localStorage.getItem("questions") ?? "null");
+  console.log(questions);
 
-  // Visa frågorna
-  console.log("Visar frågorna");
-  await displayQuestions();
-
-  answerElements.forEach((answerElement, index) => {
-    answerElement.addEventListener("click", () => selectAnswer(index + 1));
-  });
-
-  // Annars kan vi invänta svar
-  console.log("Inväntar submit click (eventListener)");
-  submitBtn.addEventListener("click", async () => {
-    console.log("SUBMIT CLICK!");
-    validate();
-  });
+  // Iterera och ställ enskilda frågorna
+  console.log("Ställer frågeställningen");
+  if (!Array.isArray(questions) || questions.length === 0) {
+    throw new Error("Det finns inga frågor att visa.");
+  }
+  questions.map(askQuestion);
 }
 
 init();
