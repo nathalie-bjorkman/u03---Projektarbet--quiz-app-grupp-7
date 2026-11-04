@@ -138,3 +138,11 @@ main {
         color:gray;
     }
 }
+
+/* Nathalie lade till en media Query för desktop */
+@media(min-width: 1200px) {
+    main {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}

@@ -3,13 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quiz tajm - Frågor</title>
+    <!-- Nathalies css för timer + base.css -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/timer.css">
+
     <link rel="stylesheet" href="../css/questions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+<!-- Nathalies JavaScript timer -->
+<script src="../js/timer.js" defer></script>
+<!-- Lunis JavaScript -->
+<script src="../js/questions.js" defer></script>
 </head>
 <body>
+
+    <!-- Nathalies del här  -->
+    
+    <!-- Dekorativ cirkel -->
+    <div class="decoration-circle" aria-hidden="true"></div>
+    <div class="decoration-bar" aria-hidden="true"></div>
+    
+    <!-- Header -->
+    <header id="timer-progress">
+    
+        <div class="timer-header">
+            <!-- logo -->
+            <img src="../img/timer/logo.svg" alt="Quiz Tajm" class="quiz-logo">
+    
+            <!-- Avbryt knappen -->
+    
+            <div class="cancel-timer-container">
+    
+                <div class="quiz-timer" role="timer">
+                    <span id="timer-icon" aria-hidden="true"><img src="../img/timer/timer.svg" alt=""></span>
+                    <span class="time-left">
+                    </span>
+                </div>
+                <button id="cancel-button">
+                    Avbryt
+                </button>
+            </div>
+    
+            <!-- Timer -->
+    
+        </div>
+    
+        <div id="progress">
+    
+            <!-- Framsteg -->
+    
+            <div class="quiz-progress">
+                <div class="progress-info">
+                    <span id="question-count"></span>
+                    <span id="questions-left"></span>
+                </div>
+    
+                <div class="progress-bar" role="progressbar" aria-label="Quizets framsteg" aria-valuemin="0"
+                    aria-valuemax="10" aria-valuenow="1">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div id="time-up-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="time-up-title" hidden>
+    
+        <div class="modal-content">
+            <div class="timer-container">
+                <svg class="time-out-logo" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                    fill="none">
+                    <path
+                        d="M17.0755 9.99529C17.0755 13.9055 13.9057 17.0753 9.99553 17.0753C6.08535 17.0753 2.91553 13.9055 2.91553 9.99529C2.91553 6.08511 6.08535 2.91528 9.99553 2.91528C13.9057 2.91528 17.0755 6.08511 17.0755 9.99529Z"
+                        stroke-width="1.66588" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.99512 6.24707V10.4118L12.6605 11.9944" stroke-width="1.66588" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+    
+            <p id="quiz-close-text">QUIZET ÄR AVSLUTAT</p>
+    
+            <h2 id="time-up-title">Tiden är slut!</h2>
+    
+            <h3 id="how-many-correct-answers">
+                <span class="correct-answer">0</span> av
+                <span id="total-questions">10</span> rätt
+            </h3>
+    
+            <p id="how-fast">Klart på 4:00. Se svaren och vad du kan ta med dig till nästa omgång</p>
+            <button id="time-up-button" type="button">
+                Se resultat <img src="../img/arrow-right-2.svg" alt="">
+            </button>
+        </div>
+    </div>
+
     <!-- GÖRS AV NATHALIE
     <header class="page-header">
         <img src="" alt="" class="logo-image">
@@ -74,6 +163,5 @@
             </div>
         </form>
     </main>
-    <script src="../js/questions.js"></script>
 </body>
 </html>
