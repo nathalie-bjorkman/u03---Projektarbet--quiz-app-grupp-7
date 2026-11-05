@@ -196,7 +196,12 @@ async function loadQuestions(categoryId) {
   return fetchedQuestions;
 }
 
+function clearResults() {
+  localStorage.removeItem("results");
+}
+
 async function init() {
+  clearResults();
   const selectedCategory =
     sessionStorage.getItem("selectedCategory") ?? "blandat";
   const categoryIds = categoryMap[selectedCategory] ?? null;
@@ -215,6 +220,7 @@ async function init() {
   });
   submitBtn.addEventListener("click", submitAnswer);
   askQuestion(questions[currentQuestionIndex]);
+  clearResults();
 }
 
 init();
