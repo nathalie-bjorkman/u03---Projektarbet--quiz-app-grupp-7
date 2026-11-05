@@ -116,6 +116,11 @@ main {
     }
     .answer-selected {
         border-color: var(--color-accent) !important;
+        
+        .check {
+            background-color:#1F1537;
+            border: 2px solid #FDF0F6;
+        }
     }
 }
 
