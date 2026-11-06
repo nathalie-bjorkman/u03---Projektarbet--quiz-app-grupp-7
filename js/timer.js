@@ -146,15 +146,3 @@ timeUpButton.addEventListener("click", function() {
 
 // Visa starttiden utan att starta nedräkningen
 displayTime();
-
-
-/* // Stoppa nedräkningen
-function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-}
-
-// Stäng time-up meddelande
-timeUpButton.addEventListener("click", function () {
-  timeUpModal.hidden = true;
-}); */
