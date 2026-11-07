@@ -40,4 +40,4 @@ https://quizappu-03.rf.gd
 
 - **Figma Make behövde fortfarande manuellt arbete:** Det visade att även om Figma Make snabbt kan skapa ett visuellt tilltalande resultat behöver designen fortfarande granskas och justeras manuellt.
 
-- **Önskat användning av Github Project & Issues:** Det hade varit bra om vi använde Github Project i framtiden eftersom då finns det enkelt tillgängligt samt kräver mindre externa kontoregistreringar. Med GH project kopplar man även ihop Github Issues in i Kanban och GANTT boards samt även kan man skapa Milestones vilket är aggilt arbetssätt.
+- **Önskat användning av Github Project & Issues:** Det hade varit bra om vi använde Github Project i framtiden eftersom då finns det enkelt tillgängligt till skillnad från Trello samt kräver mindre externa kontoregistreringar. Med GH project kopplar man även ihop Github Issues in i Kanban och GANTT boards samt även kan man skapa Milestones vilket är aggilt arbetssätt.
