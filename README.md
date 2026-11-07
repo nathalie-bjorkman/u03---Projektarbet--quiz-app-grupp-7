@@ -21,8 +21,8 @@ Appen består av fyra huvudsakliga skärmar:
 ### Skisser
 https://www.figma.com/design/dDtTZeF3oq0rlZFnJ7OF5K/U03---Quizapp?node-id=0-1&t=fjmURly7jSthj4Vm-1
 
-Publicerad app
-[#]
+### Publicerad app
+https://quizappu-03.rf.gd
 
 ## Reflektion
 
