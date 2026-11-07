@@ -27,16 +27,17 @@ https://quizappu-03.rf.gd
 ## Reflektion
 
 ### Styrkor
-En av de största styrkorna med arbetet var Crazy 8s. Det var intressant att se hur olika vi föreställde oss en så pass enkel produkt som en quizapp. Vissa skissade på en lösning där alla frågor visades samtidigt, medan andra föreslog att användaren skulle få en fråga i taget.
+- **Brainstorming med Crazy 8s:** En av de största styrkorna med arbetet var Crazy 8s. Det var intressant att se hur olika vi föreställde oss en så pass enkel produkt som en quizapp. Vissa skissade på en lösning där alla frågor visades samtidigt, medan andra föreslog att användaren skulle få en fråga i taget.
 
-Däremot hade vi ganska liknande idéer kring hur start- och avslutningsskärmarna skulle se ut.
+- **Liknande idéer:** Däremot hade vi ganska liknande idéer kring hur start- och avslutningsskärmarna skulle se ut.
 
-Övningen var ett bra sätt att snabbt få fram flera olika idéer och sedan tillsammans bestämma vilka vi ville gå vidare med.
+- **Brainstorming och selektion:** Övningen var ett bra sätt att snabbt få fram flera olika idéer och sedan tillsammans bestämma vilka vi ville gå vidare med.
 
 ### Brister och förbättringsmöjligheter
+- **Önskat mer tid på Crazy 8s brainstorming:** Jag hade gärna lagt mer tid på Crazy 8s, eftersom det var en rolig och givande metod som jag tror hade kunnat leda till ännu fler idéer.
 
-Jag hade gärna lagt mer tid på Crazy 8s, eftersom det var en rolig och givande metod som jag tror hade kunnat leda till ännu fler idéer.
+- **Brister i generering av Figma skiss:** Vi använde även Figma Make för att generera designen. Vid första anblick såg resultatet bra ut, men vi märkte vissa brister, framför allt med textplacering och hur vissa delar av gränssnittet genererades.
 
-Vi använde även Figma Make för att generera designen. Vid första anblick såg resultatet bra ut, men vi märkte vissa brister, framför allt med textplacering och hur vissa delar av gränssnittet genererades.
+- **Figma Make behövde fortfarande manuellt arbete:** Det visade att även om Figma Make snabbt kan skapa ett visuellt tilltalande resultat behöver designen fortfarande granskas och justeras manuellt.
 
-Det visade att även om Figma Make snabbt kan skapa ett visuellt tilltalande resultat behöver designen fortfarande granskas och justeras manuellt.
+- **Önskat användning av Github Project & Issues:** Det hade varit bra om vi använde Github Project i framtiden eftersom då finns det enkelt tillgängligt samt kräver mindre externa kontoregistreringar. Med GH project kopplar man även ihop Github Issues in i Kanban och GANTT boards samt även kan man skapa Milestones vilket är aggilt arbetssätt.
