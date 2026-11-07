@@ -1,10 +1,10 @@
 # Quiz Tajm 
 
 ## Teammedlemmar
-- Nathalie
-- Marcus
-- Lumi
-- Oliver
+- Nathalie @nathalie-bjorkman
+- Marcus @marcuswiman97
+- Lumi @lumiwyou
+- Oliver @oliverhillback-hannah-wq
 
 ## Om appen
 Quiz Tajm är en quizapp där användaren får svara på frågor med tre svarsalternativ: 1, X och 2.
